@@ -15,9 +15,9 @@ class Auditoria:
     def __init__(self, arquivo_log='auditoria.log'):
         """
         Inicializa o sistema de auditoria configurando o arquivo de log.
-
-        Parâmetros:
-        ---------------
+p-[]
+          Parâmetros:
+        -----------
         arquivo_log : str, opcional
             O caminho e o nome do arquivo de log. O padrão é 'auditoria.log'.
         """
@@ -31,8 +31,8 @@ class Auditoria:
         """
         Registra um evento no log com o nível de severidade especificado.
 
-        Parâmetros:
-        ---------------
+          Parâmetros:
+        -----------
         mensagem : str
             A mensagem a ser registrada no log.
         nivel : str, opcional

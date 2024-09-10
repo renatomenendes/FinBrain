@@ -118,10 +118,33 @@
 <dt class="sig sig-object py" id="app.auditoria.Auditoria">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.auditoria.</span></span><span class="sig-name descname"><span class="pre">Auditoria</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arquivo_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auditoria.log'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/auditoria.html#Auditoria"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.auditoria.Auditoria" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Classe para registrar eventos de auditoria em um arquivo de log.</p>
+<p>Esta classe configura um sistema de auditoria para registrar mensagens em 
+diferentes níveis de severidade (info, warning, error). O arquivo de log pode 
+ser especificado durante a inicialização.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>arquivo_log (str): Caminho para o arquivo onde os logs serão armazenados.</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.auditoria.Auditoria.registrar_evento">
 <span class="sig-name descname"><span class="pre">registrar_evento</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mensagem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nivel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'info'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/auditoria.html#Auditoria.registrar_evento"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.auditoria.Auditoria.registrar_evento" title="Link to this definition"></a></dt>
-<dd><p>Registra um evento no log.</p>
+<dd><p>Registra um evento no log com o nível de severidade especificado.</p>
+<section id="parametros">
+<h3>Parâmetros:<a class="headerlink" href="#parametros" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>mensagem<span class="classifier">str</span></dt><dd><p>A mensagem a ser registrada no log.</p>
+</dd>
+<dt>nivel<span class="classifier">str, opcional</span></dt><dd><p>O nível de severidade do log. Pode ser “info”, “warning”, ou “error”.
+O padrão é “info”.</p>
+</dd>
+</dl>
+</section>
+<section id="excecoes">
+<h3>Exceções:<a class="headerlink" href="#excecoes" title="Link to this heading"></a></h3>
+<p>Se o nível fornecido não for “info”, “warning” ou “error”, a mensagem será 
+registrada como “info” por padrão.</p>
+</section>
 </dd></dl>
 
 </dd></dl>
@@ -133,16 +156,52 @@
 <dt class="sig sig-object py" id="app.autenticacao.Autenticacao">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.autenticacao.</span></span><span class="sig-name descname"><span class="pre">Autenticacao</span></span><a class="reference internal" href="_modules/app/autenticacao.html#Autenticacao"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.autenticacao.Autenticacao" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Classe para gerenciamento de autenticação de senhas utilizando hash SHA-256.</p>
+<p>Esta classe oferece métodos para gerar o hash de uma senha e verificar se uma senha fornecida
+corresponde ao hash armazenado.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.autenticacao.Autenticacao.hash_senha">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hash_senha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">senha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/autenticacao.html#Autenticacao.hash_senha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.autenticacao.Autenticacao.hash_senha" title="Link to this definition"></a></dt>
-<dd><p>Gera o hash da senha.</p>
+<dd><p>Gera o hash SHA-256 para uma senha fornecida.</p>
+<section id="id1">
+<h3>Parâmetros:<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>senha<span class="classifier">str</span></dt><dd><p>A senha em texto plano que será convertida em um hash.</p>
+</dd>
+</dl>
+</section>
+<section id="retorna">
+<h3>Retorna:<a class="headerlink" href="#retorna" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>str</dt><dd><p>O hash SHA-256 da senha fornecida, no formato hexadecimal.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.autenticacao.Autenticacao.verificar_senha">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">verificar_senha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">senha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">senha_hash</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/autenticacao.html#Autenticacao.verificar_senha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.autenticacao.Autenticacao.verificar_senha" title="Link to this definition"></a></dt>
 <dd><p>Verifica se o hash da senha fornecida corresponde ao hash armazenado.</p>
+<p>Este método compara o hash da senha em texto plano com o hash armazenado 
+para verificar se a senha é válida.</p>
+<section id="id2">
+<h3>Parâmetros:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>senha<span class="classifier">str</span></dt><dd><p>A senha em texto plano a ser verificada.</p>
+</dd>
+<dt>senha_hash<span class="classifier">str</span></dt><dd><p>O hash armazenado que será comparado com o hash da senha fornecida.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Retorna:<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>bool</dt><dd><p>Retorna True se o hash da senha fornecida corresponder ao hash armazenado, 
+caso contrário, retorna False.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 </dd></dl>
@@ -154,78 +213,251 @@
 <dt class="sig sig-object py" id="app.banco.Banco">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.banco.</span></span><span class="sig-name descname"><span class="pre">Banco</span></span><a class="reference internal" href="_modules/app/banco.html#Banco"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Classe para gerenciar operações bancárias e persistência de dados.</p>
+<section id="atributos">
+<h3>Atributos:<a class="headerlink" href="#atributos" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>persistencia<span class="classifier">Persistencia</span></dt><dd><p>Instância para gerenciar a persistência de contas e transações.</p>
+</dd>
+<dt>transacao_bancaria<span class="classifier">TransacaoBancaria</span></dt><dd><p>Instância para realizar operações de transferência bancária.</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.banco.Banco.autenticar">
 <span class="sig-name descname"><span class="pre">autenticar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">senha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.autenticar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.autenticar" title="Link to this definition"></a></dt>
 <dd><p>Autentica o usuário verificando a senha hash.</p>
+<section id="id4">
+<h4>Parâmetros:<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>numero_conta<span class="classifier">str</span></dt><dd><p>O número da conta do cliente.</p>
+</dd>
+<dt>senha<span class="classifier">str</span></dt><dd><p>A senha em texto plano.</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h4>Retorna:<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>bool</dt><dd><p>True se a autenticação foi bem-sucedida, False caso contrário.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.banco.Banco.buscar_conta">
 <span class="sig-name descname"><span class="pre">buscar_conta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.buscar_conta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.buscar_conta" title="Link to this definition"></a></dt>
 <dd><p>Busca uma conta pelo número.</p>
+<section id="id6">
+<h4>Parâmetros:<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>numero_conta<span class="classifier">str</span></dt><dd><p>O número da conta a ser buscada.</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h4>Retorna:<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>ContaBancaria</dt><dd><p>A instância da conta bancária, ou None se não for encontrada.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.banco.Banco.criar_conta">
 <span class="sig-name descname"><span class="pre">criar_conta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nome_cliente</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">senha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.criar_conta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.criar_conta" title="Link to this definition"></a></dt>
-<dd><p>Cria uma nova conta bancária com um número de conta único.</p>
+<dd><p>Cria uma nova conta bancária.</p>
+<section id="id8">
+<h4>Parâmetros:<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>nome_cliente<span class="classifier">str</span></dt><dd><p>O nome do cliente.</p>
+</dd>
+<dt>senha<span class="classifier">str</span></dt><dd><p>A senha da conta.</p>
+</dd>
+</dl>
+</section>
+<section id="id9">
+<h4>Retorna:<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>ContaBancaria</dt><dd><p>A instância da nova conta bancária criada.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.banco.Banco.deposito">
 <span class="sig-name descname"><span class="pre">deposito</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.deposito"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.deposito" title="Link to this definition"></a></dt>
-<dd><p>Deposita um valor na conta.</p>
+<dd><p>Deposita um valor em uma conta bancária.</p>
+<section id="id10">
+<h4>Parâmetros:<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>numero_conta<span class="classifier">str</span></dt><dd><p>O número da conta onde o depósito será feito.</p>
+</dd>
+<dt>valor<span class="classifier">float</span></dt><dd><p>O valor a ser depositado.</p>
+</dd>
+</dl>
+</section>
+<section id="id11">
+<h4>Retorna:<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>bool</dt><dd><p>True se o depósito foi bem-sucedido, False caso contrário.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.banco.Banco.extrato">
 <span class="sig-name descname"><span class="pre">extrato</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.extrato"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.extrato" title="Link to this definition"></a></dt>
-<dd><p>Gera o extrato de transações de uma conta.</p>
+<dd><p>Gera o extrato de transações de uma conta bancária.</p>
+<section id="id12">
+<h4>Parâmetros:<a class="headerlink" href="#id12" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>numero_conta<span class="classifier">str</span></dt><dd><p>O número da conta.</p>
+</dd>
+</dl>
+</section>
+<section id="id13">
+<h4>Retorna:<a class="headerlink" href="#id13" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>str</dt><dd><p>O extrato formatado das transações ou uma mensagem de erro.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.banco.Banco.gerar_numero_conta">
 <span class="sig-name descname"><span class="pre">gerar_numero_conta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.gerar_numero_conta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.gerar_numero_conta" title="Link to this definition"></a></dt>
-<dd><p>Gera um número de conta único.</p>
+<dd><p>Gera um número único para uma nova conta bancária.</p>
+<section id="id14">
+<h4>Retorna:<a class="headerlink" href="#id14" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>str</dt><dd><p>Um número de conta único.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.banco.Banco.saque">
 <span class="sig-name descname"><span class="pre">saque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.saque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.saque" title="Link to this definition"></a></dt>
-<dd><p>Saca um valor da conta.</p>
+<dd><p>Realiza o saque de um valor de uma conta bancária.</p>
+<section id="id15">
+<h4>Parâmetros:<a class="headerlink" href="#id15" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>numero_conta<span class="classifier">str</span></dt><dd><p>O número da conta.</p>
+</dd>
+<dt>valor<span class="classifier">float</span></dt><dd><p>O valor a ser sacado.</p>
+</dd>
+<dt>taxa<span class="classifier">float, opcional</span></dt><dd><p>A taxa aplicada ao saque. O padrão é 0.</p>
+</dd>
+</dl>
+</section>
+<section id="id16">
+<h4>Retorna:<a class="headerlink" href="#id16" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>bool</dt><dd><p>True se o saque foi bem-sucedido, False caso contrário.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.banco.Banco.transferencia">
 <span class="sig-name descname"><span class="pre">transferencia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta_origem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numero_conta_destino</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.transferencia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.transferencia" title="Link to this definition"></a></dt>
-<dd><p>Delegar a transferência para a lógica de transações bancárias.</p>
+<dd><p>Realiza a transferência de um valor entre contas.</p>
+<section id="id17">
+<h4>Parâmetros:<a class="headerlink" href="#id17" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>numero_conta_origem<span class="classifier">str</span></dt><dd><p>O número da conta de origem.</p>
+</dd>
+<dt>numero_conta_destino<span class="classifier">str</span></dt><dd><p>O número da conta de destino.</p>
+</dd>
+<dt>valor<span class="classifier">float</span></dt><dd><p>O valor a ser transferido.</p>
+</dd>
+</dl>
+</section>
+<section id="id18">
+<h4>Retorna:<a class="headerlink" href="#id18" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>bool</dt><dd><p>True se a transferência foi bem-sucedida, False caso contrário.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
+</section>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="app.banco.ContaBancaria">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.banco.</span></span><span class="sig-name descname"><span class="pre">ContaBancaria</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nome_cliente</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">senha_hash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saldo_inicial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#ContaBancaria"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.ContaBancaria" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Classe para gerenciar operações básicas de uma conta bancária.</p>
+<section id="id19">
+<h3>Atributos:<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>numero_conta<span class="classifier">str</span></dt><dd><p>O número único da conta bancária.</p>
+</dd>
+<dt>nome_cliente<span class="classifier">str</span></dt><dd><p>O nome do titular da conta bancária.</p>
+</dd>
+<dt>senha_hash<span class="classifier">str</span></dt><dd><p>O hash da senha da conta, utilizado para autenticação.</p>
+</dd>
+<dt>saldo<span class="classifier">float</span></dt><dd><p>O saldo atual da conta bancária.</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.banco.ContaBancaria.depositar">
 <span class="sig-name descname"><span class="pre">depositar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#ContaBancaria.depositar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.ContaBancaria.depositar" title="Link to this definition"></a></dt>
-<dd><p>Deposita um valor na conta.</p>
+<dd><p>Deposita um valor na conta bancária.</p>
+<section id="id20">
+<h4>Parâmetros:<a class="headerlink" href="#id20" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>valor<span class="classifier">float</span></dt><dd><p>O valor a ser depositado.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.banco.ContaBancaria.sacar">
 <span class="sig-name descname"><span class="pre">sacar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#ContaBancaria.sacar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.ContaBancaria.sacar" title="Link to this definition"></a></dt>
-<dd><p>Saca um valor da conta, aplicando taxa se houver saldo suficiente.</p>
+<dd><p>Saca um valor da conta, aplicando uma taxa, se houver saldo suficiente.</p>
+<section id="id21">
+<h4>Parâmetros:<a class="headerlink" href="#id21" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>valor<span class="classifier">float</span></dt><dd><p>O valor a ser sacado.</p>
+</dd>
+<dt>taxa<span class="classifier">float, opcional</span></dt><dd><p>A taxa adicional aplicada ao saque. O padrão é 0.</p>
+</dd>
+</dl>
+</section>
+<section id="id22">
+<h4>Retorna:<a class="headerlink" href="#id22" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>bool</dt><dd><p>Retorna True se o saque foi bem-sucedido, False caso contrário.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.banco.ContaBancaria.saldo_atual">
 <span class="sig-name descname"><span class="pre">saldo_atual</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#ContaBancaria.saldo_atual"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.ContaBancaria.saldo_atual" title="Link to this definition"></a></dt>
 <dd><p>Retorna o saldo atual da conta.</p>
+<section id="id23">
+<h4>Retorna:<a class="headerlink" href="#id23" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>float</dt><dd><p>O saldo atual da conta bancária.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
+</section>
 </dd></dl>
 
 </section>
@@ -235,22 +467,56 @@
 <dt class="sig sig-object py" id="app.persistencia.Persistencia">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.persistencia.</span></span><span class="sig-name descname"><span class="pre">Persistencia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">banco_dados</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'banco.db'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/persistencia.html#Persistencia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.persistencia.Persistencia" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Classe responsável por gerenciar a persistência de dados bancários no banco de dados SQLite.</p>
+<p>Esta classe oferece métodos para criar tabelas, salvar contas, registrar transações e 
+carregar dados do banco, além de registrar eventos de auditoria.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.persistencia.Persistencia.carregar_conta">
 <span class="sig-name descname"><span class="pre">carregar_conta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/persistencia.html#Persistencia.carregar_conta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.persistencia.Persistencia.carregar_conta" title="Link to this definition"></a></dt>
-<dd><p>Carrega a conta a partir do banco de dados usando o número da conta.</p>
+<dd><p>Carrega os dados de uma conta bancária a partir do banco de dados.</p>
+<section id="id24">
+<h3>Parâmetros:<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>numero_conta<span class="classifier">str</span></dt><dd><p>O número da conta que será carregada.</p>
+</dd>
+</dl>
+</section>
+<section id="id25">
+<h3>Retorna:<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tuple</dt><dd><p>Uma tupla contendo os dados da conta (numero_conta, nome_cliente, senha_hash, saldo) ou None se a conta não for encontrada.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.persistencia.Persistencia.carregar_transacoes">
 <span class="sig-name descname"><span class="pre">carregar_transacoes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/persistencia.html#Persistencia.carregar_transacoes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.persistencia.Persistencia.carregar_transacoes" title="Link to this definition"></a></dt>
-<dd><p>Carrega todas as transações de uma conta pelo número da conta.</p>
+<dd><p>Carrega todas as transações associadas a uma conta.</p>
+<section id="id26">
+<h3>Parâmetros:<a class="headerlink" href="#id26" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>numero_conta<span class="classifier">str</span></dt><dd><p>O número da conta cujas transações serão carregadas.</p>
+</dd>
+</dl>
+</section>
+<section id="id27">
+<h3>Retorna:<a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>list</dt><dd><p>Uma lista de tuplas contendo os dados das transações (id, numero_conta, tipo, valor, data).</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.persistencia.Persistencia.criar_tabelas">
 <span class="sig-name descname"><span class="pre">criar_tabelas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/persistencia.html#Persistencia.criar_tabelas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.persistencia.Persistencia.criar_tabelas" title="Link to this definition"></a></dt>
-<dd><p>Cria as tabelas de contas e transações no banco de dados, caso não existam.</p>
+<dd><p>Cria as tabelas de contas e transações no banco de dados, caso elas ainda não existam.</p>
+<p>As tabelas são:
+- <cite>contas</cite>: Armazena os dados das contas bancárias (número da conta, nome, senha hash, saldo).
+- <cite>transacoes</cite>: Armazena as transações realizadas (tipo, valor, data).</p>
 </dd></dl>
 
 <dl class="py method">
@@ -263,12 +529,34 @@
 <dt class="sig sig-object py" id="app.persistencia.Persistencia.registrar_transacao">
 <span class="sig-name descname"><span class="pre">registrar_transacao</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/persistencia.html#Persistencia.registrar_transacao"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.persistencia.Persistencia.registrar_transacao" title="Link to this definition"></a></dt>
 <dd><p>Insere uma nova transação no banco de dados.</p>
+<section id="id28">
+<h3>Parâmetros:<a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>numero_conta<span class="classifier">str</span></dt><dd><p>O número da conta em que a transação foi realizada.</p>
+</dd>
+<dt>tipo<span class="classifier">str</span></dt><dd><p>O tipo da transação (ex: ‘deposito’, ‘saque’, ‘transferencia’).</p>
+</dd>
+<dt>valor<span class="classifier">float</span></dt><dd><p>O valor da transação.</p>
+</dd>
+</dl>
+</section>
+<section id="id29">
+<h3>Retorna:<a class="headerlink" href="#id29" title="Link to this heading"></a></h3>
+<p>None</p>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.persistencia.Persistencia.salvar_conta">
 <span class="sig-name descname"><span class="pre">salvar_conta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/persistencia.html#Persistencia.salvar_conta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.persistencia.Persistencia.salvar_conta" title="Link to this definition"></a></dt>
 <dd><p>Insere ou atualiza uma conta bancária no banco de dados.</p>
+<section id="id30">
+<h3>Parâmetros:<a class="headerlink" href="#id30" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>conta<span class="classifier">ContaBancaria</span></dt><dd><p>A instância da conta bancária a ser salva ou atualizada no banco de dados.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 </dd></dl>
@@ -280,39 +568,131 @@
 <dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.transacoes.</span></span><span class="sig-name descname"><span class="pre">TransacaoBancaria</span></span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Classe responsável por gerenciar transações bancárias como saques e transferências,
+além de calcular taxas e verificar limites diários de transações.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria.calcular_taxa_saque">
 <span class="sig-name descname"><span class="pre">calcular_taxa_saque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria.calcular_taxa_saque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria.calcular_taxa_saque" title="Link to this definition"></a></dt>
-<dd><p>Calcula taxa de 1% para saques</p>
+<dd><p>Calcula a taxa aplicada a um saque.</p>
+<p>A taxa é de 1% do valor do saque.</p>
+<section id="id31">
+<h3>Parâmetros:<a class="headerlink" href="#id31" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>valor<span class="classifier">float</span></dt><dd><p>O valor do saque.</p>
+</dd>
+</dl>
+</section>
+<section id="id32">
+<h3>Retorna:<a class="headerlink" href="#id32" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>float</dt><dd><p>O valor da taxa do saque.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria.calcular_taxa_transferencia">
 <span class="sig-name descname"><span class="pre">calcular_taxa_transferencia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria.calcular_taxa_transferencia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria.calcular_taxa_transferencia" title="Link to this definition"></a></dt>
-<dd><p>Calcula taxa de 1.5% para transferências</p>
+<dd><p>Calcula a taxa aplicada a uma transferência.</p>
+<p>A taxa é de 1.5% do valor da transferência.</p>
+<section id="id33">
+<h3>Parâmetros:<a class="headerlink" href="#id33" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>valor<span class="classifier">float</span></dt><dd><p>O valor da transferência.</p>
+</dd>
+</dl>
+</section>
+<section id="id34">
+<h3>Retorna:<a class="headerlink" href="#id34" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>float</dt><dd><p>O valor da taxa da transferência.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria.data_hoje">
 <span class="sig-name descname"><span class="pre">data_hoje</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria.data_hoje"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria.data_hoje" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Retorna a data atual no formato ‘YYYY-MM-DD’.</p>
+<section id="id35">
+<h3>Retorna:<a class="headerlink" href="#id35" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>str</dt><dd><p>A data atual.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria.registrar_saque">
 <span class="sig-name descname"><span class="pre">registrar_saque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria.registrar_saque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria.registrar_saque" title="Link to this definition"></a></dt>
-<dd><p>Registra um saque com verificação de limites e saldo.</p>
+<dd><p>Realiza o registro de um saque na conta bancária.</p>
+<p>O saque está sujeito a verificação de limites diários (máximo de 3 saques por dia) 
+e o limite de valor por saque (máximo de R$500,00 por operação), além de saldo suficiente.</p>
+<section id="id36">
+<h3>Parâmetros:<a class="headerlink" href="#id36" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>numero_conta<span class="classifier">str</span></dt><dd><p>O número da conta de onde o saque será realizado.</p>
+</dd>
+<dt>valor<span class="classifier">float</span></dt><dd><p>O valor do saque.</p>
+</dd>
+</dl>
+</section>
+<section id="id37">
+<h3>Retorna:<a class="headerlink" href="#id37" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>str</dt><dd><p>Mensagem indicando o sucesso ou erro ao realizar o saque.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria.registrar_transferencia">
 <span class="sig-name descname"><span class="pre">registrar_transferencia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta_origem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numero_conta_destino</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria.registrar_transferencia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria.registrar_transferencia" title="Link to this definition"></a></dt>
-<dd><p>Registra uma transferência com verificação de limites e saldo.</p>
+<dd><p>Realiza o registro de uma transferência entre contas bancárias.</p>
+<p>A transferência está sujeita a verificação de limites diários (máximo de 3 saques/transferências por dia)
+e o limite de valor por operação (máximo de R$500,00), além de saldo suficiente na conta de origem.</p>
+<section id="id38">
+<h3>Parâmetros:<a class="headerlink" href="#id38" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>numero_conta_origem<span class="classifier">str</span></dt><dd><p>O número da conta de origem.</p>
+</dd>
+<dt>numero_conta_destino<span class="classifier">str</span></dt><dd><p>O número da conta de destino.</p>
+</dd>
+<dt>valor<span class="classifier">float</span></dt><dd><p>O valor da transferência.</p>
+</dd>
+</dl>
+</section>
+<section id="id39">
+<h3>Retorna:<a class="headerlink" href="#id39" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>str</dt><dd><p>Mensagem indicando o sucesso ou erro ao realizar a transferência.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria.verificar_limite_saques_diarios">
 <span class="sig-name descname"><span class="pre">verificar_limite_saques_diarios</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria.verificar_limite_saques_diarios"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria.verificar_limite_saques_diarios" title="Link to this definition"></a></dt>
-<dd><p>Verifica se o limite de 3 saques/transferências diários foi atingido.</p>
+<dd><p>Verifica se o limite de 3 saques ou transferências diárias foi atingido.</p>
+<section id="id40">
+<h3>Parâmetros:<a class="headerlink" href="#id40" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>numero_conta<span class="classifier">str</span></dt><dd><p>O número da conta a ser verificada.</p>
+</dd>
+</dl>
+</section>
+<section id="id41">
+<h3>Retorna:<a class="headerlink" href="#id41" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>bool</dt><dd><p>Retorna True se o limite de transações diárias não foi excedido, False caso contrário.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 </dd></dl>

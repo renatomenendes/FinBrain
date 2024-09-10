@@ -77,44 +77,96 @@
 <div class="viewcode-block" id="TransacaoBancaria">
 <a class="viewcode-back" href="../../app.html#app.transacoes.TransacaoBancaria">[docs]</a>
 <span class="k">class</span> <span class="nc">TransacaoBancaria</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe responsável por gerenciar transações bancárias como saques e transferências,</span>
+<span class="sd">    além de calcular taxas e verificar limites diários de transações.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicializa a instância da classe, incluindo uma conexão com a camada de persistência.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span> <span class="o">=</span> <span class="n">Persistencia</span><span class="p">()</span>
 
 <div class="viewcode-block" id="TransacaoBancaria.calcular_taxa_saque">
 <a class="viewcode-back" href="../../app.html#app.transacoes.TransacaoBancaria.calcular_taxa_saque">[docs]</a>
     <span class="k">def</span> <span class="nf">calcular_taxa_saque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcula taxa de 1% para saques&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calcula a taxa aplicada a um saque.</span>
+
+<span class="sd">        A taxa é de 1% do valor do saque.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        valor : float</span>
+<span class="sd">            O valor do saque.</span>
+
+<span class="sd">        Retorna:</span>
+<span class="sd">        --------</span>
+<span class="sd">        float</span>
+<span class="sd">            O valor da taxa do saque.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">valor</span> <span class="o">*</span> <span class="mf">0.01</span>  <span class="c1"># Taxa de 1%</span></div>
 
 
 <div class="viewcode-block" id="TransacaoBancaria.calcular_taxa_transferencia">
 <a class="viewcode-back" href="../../app.html#app.transacoes.TransacaoBancaria.calcular_taxa_transferencia">[docs]</a>
     <span class="k">def</span> <span class="nf">calcular_taxa_transferencia</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcula taxa de 1.5% para transferências&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calcula a taxa aplicada a uma transferência.</span>
+
+<span class="sd">        A taxa é de 1.5% do valor da transferência.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        valor : float</span>
+<span class="sd">            O valor da transferência.</span>
+
+<span class="sd">        Retorna:</span>
+<span class="sd">        --------</span>
+<span class="sd">        float</span>
+<span class="sd">            O valor da taxa da transferência.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">valor</span> <span class="o">*</span> <span class="mf">0.015</span>  <span class="c1"># Taxa de 1.5%</span></div>
 
 
 <div class="viewcode-block" id="TransacaoBancaria.verificar_limite_saques_diarios">
 <a class="viewcode-back" href="../../app.html#app.transacoes.TransacaoBancaria.verificar_limite_saques_diarios">[docs]</a>
     <span class="k">def</span> <span class="nf">verificar_limite_saques_diarios</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Verifica se o limite de 3 saques/transferências diários foi atingido.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Verifica se o limite de 3 saques ou transferências diárias foi atingido.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        numero_conta : str</span>
+<span class="sd">            O número da conta a ser verificada.</span>
+
+<span class="sd">        Retorna:</span>
+<span class="sd">        --------</span>
+<span class="sd">        bool</span>
+<span class="sd">            Retorna True se o limite de transações diárias não foi excedido, False caso contrário.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">transacoes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">carregar_transacoes</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">)</span>
         
-        <span class="c1"># Obter a data atual no formato YYYY-MM-DD</span>
         <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
         <span class="n">data_atual</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
         
-        <span class="c1"># Verificar em qual índice está a data (suponho que seja o índice 4)</span>
-        <span class="c1"># Ajuste para o índice correto da data no seu banco de dados</span>
         <span class="n">transacoes_hoje</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">transacoes</span> <span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;saque&#39;</span> <span class="ow">or</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;transferencia_envio&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">t</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">data_atual</span><span class="p">)]</span>
         
-        <span class="c1"># Verifica se o limite de 3 transações (saques/transferências) foi atingido</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">transacoes_hoje</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span>  <span class="c1"># Retorna True se o limite não foi atingido</span></div>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">transacoes_hoje</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span>  <span class="c1"># Limite de 3 saques/transferências por dia</span></div>
 
 
 <div class="viewcode-block" id="TransacaoBancaria.data_hoje">
 <a class="viewcode-back" href="../../app.html#app.transacoes.TransacaoBancaria.data_hoje">[docs]</a>
     <span class="k">def</span> <span class="nf">data_hoje</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna a data atual no formato &#39;YYYY-MM-DD&#39;.</span>
+
+<span class="sd">        Retorna:</span>
+<span class="sd">        --------</span>
+<span class="sd">        str</span>
+<span class="sd">            A data atual.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
         <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
@@ -122,25 +174,37 @@
 <div class="viewcode-block" id="TransacaoBancaria.registrar_saque">
 <a class="viewcode-back" href="../../app.html#app.transacoes.TransacaoBancaria.registrar_saque">[docs]</a>
     <span class="k">def</span> <span class="nf">registrar_saque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Registra um saque com verificação de limites e saldo.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Realiza o registro de um saque na conta bancária.</span>
+
+<span class="sd">        O saque está sujeito a verificação de limites diários (máximo de 3 saques por dia) </span>
+<span class="sd">        e o limite de valor por saque (máximo de R$500,00 por operação), além de saldo suficiente.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        numero_conta : str</span>
+<span class="sd">            O número da conta de onde o saque será realizado.</span>
+<span class="sd">        valor : float</span>
+<span class="sd">            O valor do saque.</span>
+
+<span class="sd">        Retorna:</span>
+<span class="sd">        --------</span>
+<span class="sd">        str</span>
+<span class="sd">            Mensagem indicando o sucesso ou erro ao realizar o saque.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         
-        <span class="c1"># Verificar o limite de R$500,00 por saque</span>
         <span class="k">if</span> <span class="n">valor</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;Erro: Valor do saque excede o limite de R$ 500,00 por saque.&quot;</span>
         
-        <span class="c1"># Verificar o limite de 3 saques diários</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">verificar_limite_saques_diarios</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">):</span>
             <span class="k">return</span> <span class="s2">&quot;Erro: Limite de 3 saques diários excedido.&quot;</span>
         
         <span class="n">conta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">carregar_conta</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">)</span>
         
-        <span class="c1"># Verificar se há saldo suficiente</span>
         <span class="k">if</span> <span class="n">conta</span> <span class="ow">and</span> <span class="n">conta</span><span class="o">.</span><span class="n">saldo_atual</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">valor</span><span class="p">:</span>
-            <span class="c1"># Calcular a taxa do saque (1% do valor)</span>
             <span class="n">taxa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcular_taxa_saque</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
             <span class="n">valor_total</span> <span class="o">=</span> <span class="n">valor</span> <span class="o">+</span> <span class="n">taxa</span>
             
-            <span class="c1"># Verificar se há saldo suficiente para o valor e a taxa</span>
             <span class="k">if</span> <span class="n">conta</span><span class="o">.</span><span class="n">saldo_atual</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">valor_total</span><span class="p">:</span>
                 <span class="n">conta</span><span class="o">.</span><span class="n">saldo</span> <span class="o">-=</span> <span class="n">valor_total</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">salvar_conta</span><span class="p">(</span><span class="n">conta</span><span class="p">)</span>
@@ -155,40 +219,57 @@
 <div class="viewcode-block" id="TransacaoBancaria.registrar_transferencia">
 <a class="viewcode-back" href="../../app.html#app.transacoes.TransacaoBancaria.registrar_transferencia">[docs]</a>
     <span class="k">def</span> <span class="nf">registrar_transferencia</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta_origem</span><span class="p">,</span> <span class="n">numero_conta_destino</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Registra uma transferência com verificação de limites e saldo.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Realiza o registro de uma transferência entre contas bancárias.</span>
 
-        <span class="c1"># Verificar o limite de R$500,00 por transferência</span>
+<span class="sd">        A transferência está sujeita a verificação de limites diários (máximo de 3 saques/transferências por dia)</span>
+<span class="sd">        e o limite de valor por operação (máximo de R$500,00), além de saldo suficiente na conta de origem.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        numero_conta_origem : str</span>
+<span class="sd">            O número da conta de origem.</span>
+<span class="sd">        numero_conta_destino : str</span>
+<span class="sd">            O número da conta de destino.</span>
+<span class="sd">        valor : float</span>
+<span class="sd">            O valor da transferência.</span>
+
+<span class="sd">        Retorna:</span>
+<span class="sd">        --------</span>
+<span class="sd">        str</span>
+<span class="sd">            Mensagem indicando o sucesso ou erro ao realizar a transferência.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
         <span class="k">if</span> <span class="n">valor</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;Erro: Valor da transferência excede o limite de R$ 500,00 por operação.&quot;</span>
 
-        <span class="c1"># Verificar o limite de 3 transferências/saques diários</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">verificar_limite_saques_diarios</span><span class="p">(</span><span class="n">numero_conta_origem</span><span class="p">):</span>
             <span class="k">return</span> <span class="s2">&quot;Erro: Limite de 3 saques/transferências diárias excedido.&quot;</span>
+        
         <span class="n">conta_origem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">carregar_conta</span><span class="p">(</span><span class="n">numero_conta_origem</span><span class="p">)</span>
         <span class="n">conta_destino</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">carregar_conta</span><span class="p">(</span><span class="n">numero_conta_destino</span><span class="p">)</span>
 
-        <span class="c1"># Verificar se ambas as contas foram carregadas</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">conta_origem</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">conta_destino</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;Erro: Conta de origem ou destino não encontrada.&quot;</span>
 
         <span class="k">if</span> <span class="n">conta_origem</span> <span class="ow">and</span> <span class="n">conta_origem</span><span class="o">.</span><span class="n">saldo_atual</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">valor</span><span class="p">:</span>
-            <span class="c1"># Calcular a taxa de transferência (1.5% do valor)</span>
             <span class="n">taxa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcular_taxa_transferencia</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
             <span class="n">valor_total</span> <span class="o">=</span> <span class="n">valor</span> <span class="o">+</span> <span class="n">taxa</span>
-            <span class="c1"># Verificar se há saldo suficiente para o valor e a taxa</span>
+            
             <span class="k">if</span> <span class="n">conta_origem</span><span class="o">.</span><span class="n">saldo_atual</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">valor_total</span><span class="p">:</span>
-                <span class="c1"># Deduz o valor e a taxa da conta de origem</span>
                 <span class="n">conta_origem</span><span class="o">.</span><span class="n">saldo</span> <span class="o">-=</span> <span class="n">valor_total</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">salvar_conta</span><span class="p">(</span><span class="n">conta_origem</span><span class="p">)</span>
-                <span class="c1"># Adiciona o valor na conta de destino</span>
+                
                 <span class="n">conta_destino</span><span class="o">.</span><span class="n">saldo</span> <span class="o">+=</span> <span class="n">valor</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">salvar_conta</span><span class="p">(</span><span class="n">conta_destino</span><span class="p">)</span>
-                <span class="c1"># Registra a transação</span>
+                
                 <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">registrar_transacao</span><span class="p">(</span><span class="n">numero_conta_origem</span><span class="p">,</span> <span class="s1">&#39;transferencia_envio&#39;</span><span class="p">,</span> <span class="n">valor</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">registrar_transacao</span><span class="p">(</span><span class="n">numero_conta_destino</span><span class="p">,</span> <span class="s1">&#39;transferencia_recebido&#39;</span><span class="p">,</span> <span class="n">valor</span><span class="p">)</span>
+                
                 <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Transferência de R$</span><span class="si">{</span><span class="n">valor</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> realizada com sucesso, incluindo R$</span><span class="si">{</span><span class="n">taxa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> de taxa.&quot;</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="s2">&quot;Erro: Saldo insuficiente para cobrir o valor da transferência e a taxa.&quot;</span>
+        
         <span class="k">return</span> <span class="s2">&quot;Erro: Saldo insuficiente para realizar a transferência.&quot;</span></div>
 </div>
 

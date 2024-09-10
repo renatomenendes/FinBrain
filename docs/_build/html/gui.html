@@ -97,62 +97,99 @@
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.interface.</span></span><span class="sig-name descname"><span class="pre">InterfaceBancaria</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Interface gráfica do sistema bancário FinBrain, simulando operações de um banco, como:
+- Login
+- Criação de contas
+- Depósitos
+- Saques
+- Transferências
+- Visualização de extrato</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.copiar_para_clipboard">
 <span class="sig-name descname"><span class="pre">copiar_para_clipboard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.copiar_para_clipboard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.copiar_para_clipboard" title="Link to this definition"></a></dt>
-<dd><p>Copia o texto para o clipboard.</p>
+<dd><p>Copia o texto fornecido para o clipboard.</p>
+<section id="parametros">
+<h3>Parâmetros:<a class="headerlink" href="#parametros" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>texto<span class="classifier">str</span></dt><dd><p>O texto a ser copiado para o clipboard.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.criar_conta">
 <span class="sig-name descname"><span class="pre">criar_conta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.criar_conta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.criar_conta" title="Link to this definition"></a></dt>
-<dd><p>Cria uma nova conta no sistema.</p>
+<dd><p>Cria uma nova conta no sistema e exibe o número da conta.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.fazer_deposito">
 <span class="sig-name descname"><span class="pre">fazer_deposito</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.fazer_deposito"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.fazer_deposito" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Realiza o depósito de um valor na conta do usuário logado.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.fazer_login">
 <span class="sig-name descname"><span class="pre">fazer_login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.fazer_login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.fazer_login" title="Link to this definition"></a></dt>
-<dd><p>Realiza o login do usuário.</p>
+<dd><p>Realiza o login do usuário, autenticando com o número da conta e a senha.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.fazer_saque">
 <span class="sig-name descname"><span class="pre">fazer_saque</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.fazer_saque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.fazer_saque" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Realiza o saque de um valor da conta do usuário logado.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.fazer_transferencia">
 <span class="sig-name descname"><span class="pre">fazer_transferencia</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.fazer_transferencia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.fazer_transferencia" title="Link to this definition"></a></dt>
-<dd><p>Realiza uma transferência entre contas.</p>
+<dd><p>Realiza a transferência de um valor entre contas bancárias.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.limpar_tela">
 <span class="sig-name descname"><span class="pre">limpar_tela</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.limpar_tela"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.limpar_tela" title="Link to this definition"></a></dt>
-<dd><p>Limpa a tela atual.</p>
+<dd><p>Limpa todos os elementos visuais da tela atual.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.mostrar_extrato">
 <span class="sig-name descname"><span class="pre">mostrar_extrato</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.mostrar_extrato"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.mostrar_extrato" title="Link to this definition"></a></dt>
-<dd><p>Mostra o extrato na tela.</p>
+<dd><p>Exibe o extrato da conta em uma janela de mensagem.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.mostrar_numero_conta">
 <span class="sig-name descname"><span class="pre">mostrar_numero_conta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.mostrar_numero_conta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.mostrar_numero_conta" title="Link to this definition"></a></dt>
-<dd><p>Exibe o número da conta em um campo de texto copiável.</p>
+<dd><p>Exibe o número da conta recém-criada e permite que o usuário copie para o clipboard.</p>
+<section id="id1">
+<h3>Parâmetros:<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>numero_conta<span class="classifier">str</span></dt><dd><p>O número da conta recém-criada.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.normalizar_valor">
 <span class="sig-name descname"><span class="pre">normalizar_valor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valor_str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.normalizar_valor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.normalizar_valor" title="Link to this definition"></a></dt>
-<dd><p>Normaliza o valor inserido pelo usuário, converte para float e valida.</p>
+<dd><p>Normaliza o valor inserido pelo usuário, removendo símbolos e convertendo para float.</p>
+<section id="id2">
+<h3>Parâmetros:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>valor_str<span class="classifier">str</span></dt><dd><p>O valor inserido pelo usuário.</p>
+</dd>
+</dl>
+</section>
+<section id="retorna">
+<h3>Retorna:<a class="headerlink" href="#retorna" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>float or None</dt><dd><p>O valor convertido em float ou None se a conversão falhar.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
@@ -164,43 +201,50 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.tela_criar_conta">
 <span class="sig-name descname"><span class="pre">tela_criar_conta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.tela_criar_conta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.tela_criar_conta" title="Link to this definition"></a></dt>
-<dd><p>Cria a interface para criar uma nova conta.</p>
+<dd><p>Cria a interface para permitir a criação de uma nova conta bancária.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.tela_deposito">
 <span class="sig-name descname"><span class="pre">tela_deposito</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.tela_deposito"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.tela_deposito" title="Link to this definition"></a></dt>
-<dd><p>Cria a interface para realizar depósito.</p>
+<dd><p>Cria a interface para permitir que o usuário faça um depósito.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.tela_inicial">
 <span class="sig-name descname"><span class="pre">tela_inicial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.tela_inicial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.tela_inicial" title="Link to this definition"></a></dt>
-<dd><p>Cria a tela inicial com as opções de Login, Criar Conta e Sair.</p>
+<dd><p>Cria a tela inicial com opções de Login, Criar Conta e Sair.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.tela_login">
 <span class="sig-name descname"><span class="pre">tela_login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.tela_login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.tela_login" title="Link to this definition"></a></dt>
-<dd><p>Cria a interface de login.</p>
+<dd><p>Cria a interface de login, solicitando número da conta e senha.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.tela_operacoes">
 <span class="sig-name descname"><span class="pre">tela_operacoes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.tela_operacoes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.tela_operacoes" title="Link to this definition"></a></dt>
-<dd><p>Cria a interface das operações bancárias.</p>
+<dd><p>Cria a interface para exibir as operações disponíveis (depósito, saque, transferência, extrato).</p>
+<section id="id3">
+<h3>Parâmetros:<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>numero_conta<span class="classifier">str</span></dt><dd><p>O número da conta do usuário logado.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.tela_saque">
 <span class="sig-name descname"><span class="pre">tela_saque</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.tela_saque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.tela_saque" title="Link to this definition"></a></dt>
-<dd><p>Cria a interface para realizar saque.</p>
+<dd><p>Cria a interface para permitir que o usuário faça um saque.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.interface.InterfaceBancaria.tela_transferencia">
 <span class="sig-name descname"><span class="pre">tela_transferencia</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/interface.html#InterfaceBancaria.tela_transferencia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.interface.InterfaceBancaria.tela_transferencia" title="Link to this definition"></a></dt>
-<dd><p>Cria a interface para realizar transferência.</p>
+<dd><p>Cria a interface para permitir que o usuário faça uma transferência.</p>
 </dd></dl>
 
 </dd></dl>

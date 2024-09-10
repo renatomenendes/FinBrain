@@ -77,8 +77,26 @@
 <div class="viewcode-block" id="Auditoria">
 <a class="viewcode-back" href="../../app.html#app.auditoria.Auditoria">[docs]</a>
 <span class="k">class</span> <span class="nc">Auditoria</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe para registrar eventos de auditoria em um arquivo de log.</span>
+
+<span class="sd">    Esta classe configura um sistema de auditoria para registrar mensagens em </span>
+<span class="sd">    diferentes níveis de severidade (info, warning, error). O arquivo de log pode </span>
+<span class="sd">    ser especificado durante a inicialização.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        arquivo_log (str): Caminho para o arquivo onde os logs serão armazenados.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arquivo_log</span><span class="o">=</span><span class="s1">&#39;auditoria.log&#39;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Inicializa o sistema de auditoria com um arquivo de log.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicializa o sistema de auditoria configurando o arquivo de log.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        arquivo_log : str, opcional</span>
+<span class="sd">            O caminho e o nome do arquivo de log. O padrão é &#39;auditoria.log&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
             <span class="n">filename</span><span class="o">=</span><span class="n">arquivo_log</span><span class="p">,</span>
             <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
@@ -88,7 +106,22 @@
 <div class="viewcode-block" id="Auditoria.registrar_evento">
 <a class="viewcode-back" href="../../app.html#app.auditoria.Auditoria.registrar_evento">[docs]</a>
     <span class="k">def</span> <span class="nf">registrar_evento</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mensagem</span><span class="p">,</span> <span class="n">nivel</span><span class="o">=</span><span class="s2">&quot;info&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Registra um evento no log.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Registra um evento no log com o nível de severidade especificado.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mensagem : str</span>
+<span class="sd">            A mensagem a ser registrada no log.</span>
+<span class="sd">        nivel : str, opcional</span>
+<span class="sd">            O nível de severidade do log. Pode ser &quot;info&quot;, &quot;warning&quot;, ou &quot;error&quot;.</span>
+<span class="sd">            O padrão é &quot;info&quot;.</span>
+
+<span class="sd">        Exceções:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        Se o nível fornecido não for &quot;info&quot;, &quot;warning&quot; ou &quot;error&quot;, a mensagem será </span>
+<span class="sd">        registrada como &quot;info&quot; por padrão.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">nivel</span> <span class="o">==</span> <span class="s2">&quot;info&quot;</span><span class="p">:</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">mensagem</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">nivel</span> <span class="o">==</span> <span class="s2">&quot;warning&quot;</span><span class="p">:</span>

@@ -78,16 +78,36 @@
 <div class="viewcode-block" id="Persistencia">
 <a class="viewcode-back" href="../../app.html#app.persistencia.Persistencia">[docs]</a>
 <span class="k">class</span> <span class="nc">Persistencia</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe responsável por gerenciar a persistência de dados bancários no banco de dados SQLite.</span>
+
+<span class="sd">    Esta classe oferece métodos para criar tabelas, salvar contas, registrar transações e </span>
+<span class="sd">    carregar dados do banco, além de registrar eventos de auditoria.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">banco_dados</span><span class="o">=</span><span class="s1">&#39;banco.db&#39;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Inicializa a conexão com o banco de dados e cria as tabelas se não existirem.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicializa a conexão com o banco de dados e cria as tabelas de contas e transações.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        banco_dados : str, opcional</span>
+<span class="sd">            O nome do arquivo do banco de dados SQLite. O padrão é &#39;banco.db&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conexao</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">banco_dados</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">auditoria</span> <span class="o">=</span> <span class="n">Auditoria</span><span class="p">()</span>  <span class="c1"># Usado para registrar eventos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auditoria</span> <span class="o">=</span> <span class="n">Auditoria</span><span class="p">()</span>  <span class="c1"># Instancia a auditoria para registrar eventos</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">criar_tabelas</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Persistencia.criar_tabelas">
 <a class="viewcode-back" href="../../app.html#app.persistencia.Persistencia.criar_tabelas">[docs]</a>
     <span class="k">def</span> <span class="nf">criar_tabelas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cria as tabelas de contas e transações no banco de dados, caso não existam.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cria as tabelas de contas e transações no banco de dados, caso elas ainda não existam.</span>
+
+<span class="sd">        As tabelas são:</span>
+<span class="sd">        - `contas`: Armazena os dados das contas bancárias (número da conta, nome, senha hash, saldo).</span>
+<span class="sd">        - `transacoes`: Armazena as transações realizadas (tipo, valor, data).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexao</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">            CREATE TABLE IF NOT EXISTS contas (</span>
@@ -113,7 +133,14 @@
 <div class="viewcode-block" id="Persistencia.salvar_conta">
 <a class="viewcode-back" href="../../app.html#app.persistencia.Persistencia.salvar_conta">[docs]</a>
     <span class="k">def</span> <span class="nf">salvar_conta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conta</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Insere ou atualiza uma conta bancária no banco de dados.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Insere ou atualiza uma conta bancária no banco de dados.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        conta : ContaBancaria</span>
+<span class="sd">            A instância da conta bancária a ser salva ou atualizada no banco de dados.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexao</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">            INSERT OR REPLACE INTO contas (numero_conta, nome_cliente, senha_hash, saldo)</span>
@@ -126,9 +153,20 @@
 <div class="viewcode-block" id="Persistencia.carregar_conta">
 <a class="viewcode-back" href="../../app.html#app.persistencia.Persistencia.carregar_conta">[docs]</a>
     <span class="k">def</span> <span class="nf">carregar_conta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Carrega a conta a partir do banco de dados usando o número da conta.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Carrega os dados de uma conta bancária a partir do banco de dados.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        numero_conta : str</span>
+<span class="sd">            O número da conta que será carregada.</span>
+
+<span class="sd">        Retorna:</span>
+<span class="sd">        --------</span>
+<span class="sd">        tuple</span>
+<span class="sd">            Uma tupla contendo os dados da conta (numero_conta, nome_cliente, senha_hash, saldo) ou None se a conta não for encontrada.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexao</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-        <span class="c1"># Seleciona apenas as colunas necessárias</span>
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT numero_conta, nome_cliente, senha_hash, saldo FROM contas WHERE numero_conta = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">numero_conta</span><span class="p">,))</span>
         <span class="n">conta_dados</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">conta_dados</span><span class="p">:</span>
@@ -140,7 +178,22 @@
 <div class="viewcode-block" id="Persistencia.registrar_transacao">
 <a class="viewcode-back" href="../../app.html#app.persistencia.Persistencia.registrar_transacao">[docs]</a>
     <span class="k">def</span> <span class="nf">registrar_transacao</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">,</span> <span class="n">tipo</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Insere uma nova transação no banco de dados.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Insere uma nova transação no banco de dados.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        numero_conta : str</span>
+<span class="sd">            O número da conta em que a transação foi realizada.</span>
+<span class="sd">        tipo : str</span>
+<span class="sd">            O tipo da transação (ex: &#39;deposito&#39;, &#39;saque&#39;, &#39;transferencia&#39;).</span>
+<span class="sd">        valor : float</span>
+<span class="sd">            O valor da transação.</span>
+
+<span class="sd">        Retorna:</span>
+<span class="sd">        --------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexao</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">            INSERT INTO transacoes (numero_conta, tipo, valor, data)</span>
@@ -150,11 +203,22 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">auditoria</span><span class="o">.</span><span class="n">registrar_evento</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transação &#39;</span><span class="si">{</span><span class="n">tipo</span><span class="si">}</span><span class="s2">&#39; de R$</span><span class="si">{</span><span class="n">valor</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> registrada para a conta </span><span class="si">{</span><span class="n">numero_conta</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
 
 
-
 <div class="viewcode-block" id="Persistencia.carregar_transacoes">
 <a class="viewcode-back" href="../../app.html#app.persistencia.Persistencia.carregar_transacoes">[docs]</a>
     <span class="k">def</span> <span class="nf">carregar_transacoes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Carrega todas as transações de uma conta pelo número da conta.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Carrega todas as transações associadas a uma conta.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        numero_conta : str</span>
+<span class="sd">            O número da conta cujas transações serão carregadas.</span>
+
+<span class="sd">        Retorna:</span>
+<span class="sd">        --------</span>
+<span class="sd">        list</span>
+<span class="sd">            Uma lista de tuplas contendo os dados das transações (id, numero_conta, tipo, valor, data).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexao</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM transacoes WHERE numero_conta = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">numero_conta</span><span class="p">,))</span>
         <span class="n">transacoes</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
@@ -165,7 +229,9 @@
 <div class="viewcode-block" id="Persistencia.fechar_conexao">
 <a class="viewcode-back" href="../../app.html#app.persistencia.Persistencia.fechar_conexao">[docs]</a>
     <span class="k">def</span> <span class="nf">fechar_conexao</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fecha a conexão com o banco de dados.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fecha a conexão com o banco de dados.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexao</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">conexao</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">auditoria</span><span class="o">.</span><span class="n">registrar_evento</span><span class="p">(</span><span class="s2">&quot;Conexão com o banco de dados fechada.&quot;</span><span class="p">)</span></div>

@@ -82,14 +82,32 @@
 <div class="viewcode-block" id="InterfaceBancaria">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria">[docs]</a>
 <span class="k">class</span> <span class="nc">InterfaceBancaria</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Interface gráfica do sistema bancário FinBrain, simulando operações de um banco, como:</span>
+<span class="sd">    - Login</span>
+<span class="sd">    - Criação de contas</span>
+<span class="sd">    - Depósitos</span>
+<span class="sd">    - Saques</span>
+<span class="sd">    - Transferências</span>
+<span class="sd">    - Visualização de extrato</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicializa a interface gráfica da aplicação e exibe a tela inicial.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        root : Tk</span>
+<span class="sd">            A janela raiz do tkinter.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;FinBrain - Sistema Bancário&quot;</span><span class="p">)</span>
 
-        <span class="c1"># Definir tamanho de janela para simular um smartphone</span>
+        <span class="c1"># Definir tamanho da janela para simular um smartphone</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;400x600&quot;</span><span class="p">)</span>  <span class="c1"># Tamanho típico de um smartphone</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">resizable</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>  <span class="c1"># Impedir redimensionamento</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">banco</span> <span class="o">=</span> <span class="n">Banco</span><span class="p">()</span>  <span class="c1"># Inicializa o banco de dados</span>
         
         <span class="c1"># Exibe a tela inicial</span>
@@ -98,7 +116,19 @@
 <div class="viewcode-block" id="InterfaceBancaria.normalizar_valor">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.normalizar_valor">[docs]</a>
     <span class="k">def</span> <span class="nf">normalizar_valor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valor_str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Normaliza o valor inserido pelo usuário, converte para float e valida.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Normaliza o valor inserido pelo usuário, removendo símbolos e convertendo para float.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        valor_str : str</span>
+<span class="sd">            O valor inserido pelo usuário.</span>
+
+<span class="sd">        Retorna:</span>
+<span class="sd">        --------</span>
+<span class="sd">        float or None</span>
+<span class="sd">            O valor convertido em float ou None se a conversão falhar.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">valor_str</span> <span class="o">=</span> <span class="n">valor_str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;R$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;r$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
         
         <span class="k">try</span><span class="p">:</span>
@@ -111,11 +141,12 @@
 <div class="viewcode-block" id="InterfaceBancaria.tela_inicial">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.tela_inicial">[docs]</a>
     <span class="k">def</span> <span class="nf">tela_inicial</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cria a tela inicial com as opções de Login, Criar Conta e Sair.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cria a tela inicial com opções de Login, Criar Conta e Sair.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">limpar_tela</span><span class="p">()</span>
 
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Bem-vindo ao FinBrain&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-
         <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Login&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tela_login</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Criar Conta&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tela_criar_conta</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Sair&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sair_aplicacao</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span></div>
@@ -124,14 +155,18 @@
 <div class="viewcode-block" id="InterfaceBancaria.sair_aplicacao">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.sair_aplicacao">[docs]</a>
     <span class="k">def</span> <span class="nf">sair_aplicacao</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fecha a aplicação.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fecha a aplicação.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="InterfaceBancaria.tela_login">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.tela_login">[docs]</a>
     <span class="k">def</span> <span class="nf">tela_login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cria a interface de login.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cria a interface de login, solicitando número da conta e senha.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">limpar_tela</span><span class="p">()</span>
 
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Login&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -151,7 +186,9 @@
 <div class="viewcode-block" id="InterfaceBancaria.tela_criar_conta">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.tela_criar_conta">[docs]</a>
     <span class="k">def</span> <span class="nf">tela_criar_conta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cria a interface para criar uma nova conta.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cria a interface para permitir a criação de uma nova conta bancária.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">limpar_tela</span><span class="p">()</span>
 
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Criar Nova Conta&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -171,31 +208,36 @@
 <div class="viewcode-block" id="InterfaceBancaria.criar_conta">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.criar_conta">[docs]</a>
     <span class="k">def</span> <span class="nf">criar_conta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cria uma nova conta no sistema.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cria uma nova conta no sistema e exibe o número da conta.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">nome</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrada_nome</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="n">senha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrada_senha_criacao</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="n">nova_conta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">banco</span><span class="o">.</span><span class="n">criar_conta</span><span class="p">(</span><span class="n">nome</span><span class="p">,</span> <span class="n">senha</span><span class="p">)</span>
-        
-        <span class="c1"># Exibe o número da conta criada em um campo de texto copiável</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mostrar_numero_conta</span><span class="p">(</span><span class="n">nova_conta</span><span class="o">.</span><span class="n">numero_conta</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="InterfaceBancaria.mostrar_numero_conta">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.mostrar_numero_conta">[docs]</a>
     <span class="k">def</span> <span class="nf">mostrar_numero_conta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Exibe o número da conta em um campo de texto copiável.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Exibe o número da conta recém-criada e permite que o usuário copie para o clipboard.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        numero_conta : str</span>
+<span class="sd">            O número da conta recém-criada.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">limpar_tela</span><span class="p">()</span>
 
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Conta Criada com Sucesso!&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Número da Conta:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-        <span class="c1"># Campo para exibir o número da conta e permitir cópia</span>
         <span class="n">campo_numero_conta</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
         <span class="n">campo_numero_conta</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">)</span>
-        <span class="n">campo_numero_conta</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s2">&quot;readonly&quot;</span><span class="p">)</span>  <span class="c1"># Bloquear edição</span>
+        <span class="n">campo_numero_conta</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s2">&quot;readonly&quot;</span><span class="p">)</span>
         <span class="n">campo_numero_conta</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-        <span class="c1"># Botão para copiar o número da conta para o clipboard</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Copiar&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">copiar_para_clipboard</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">))</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Fazer Login&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tela_login</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span></div>
 
@@ -203,7 +245,14 @@
 <div class="viewcode-block" id="InterfaceBancaria.copiar_para_clipboard">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.copiar_para_clipboard">[docs]</a>
     <span class="k">def</span> <span class="nf">copiar_para_clipboard</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texto</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Copia o texto para o clipboard.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Copia o texto fornecido para o clipboard.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        texto : str</span>
+<span class="sd">            O texto a ser copiado para o clipboard.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">clipboard_clear</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">clipboard_append</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span>
         <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Copiado&quot;</span><span class="p">,</span> <span class="s2">&quot;Número da conta copiado para o clipboard!&quot;</span><span class="p">)</span></div>
@@ -212,19 +261,20 @@
 <div class="viewcode-block" id="InterfaceBancaria.tela_operacoes">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.tela_operacoes">[docs]</a>
     <span class="k">def</span> <span class="nf">tela_operacoes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cria a interface das operações bancárias.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cria a interface para exibir as operações disponíveis (depósito, saque, transferência, extrato).</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        numero_conta : str</span>
+<span class="sd">            O número da conta do usuário logado.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">limpar_tela</span><span class="p">()</span>
 
-        <span class="c1"># Buscar a conta para exibir o nome do cliente</span>
         <span class="n">conta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">banco</span><span class="o">.</span><span class="n">buscar_conta</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">conta</span><span class="p">:</span>
-            <span class="n">nome_cliente</span> <span class="o">=</span> <span class="n">conta</span><span class="o">.</span><span class="n">nome_cliente</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">nome_cliente</span> <span class="o">=</span> <span class="s2">&quot;Cliente Desconhecido&quot;</span>  <span class="c1"># Fallback caso a conta não seja encontrada</span>
+        <span class="n">nome_cliente</span> <span class="o">=</span> <span class="n">conta</span><span class="o">.</span><span class="n">nome_cliente</span> <span class="k">if</span> <span class="n">conta</span> <span class="k">else</span> <span class="s2">&quot;Cliente Desconhecido&quot;</span>
 
-        <span class="c1"># Exibir o nome e o número da conta</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nome_cliente</span><span class="si">}</span><span class="s2"> - Conta </span><span class="si">{</span><span class="n">numero_conta</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-
         <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Depósito&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tela_deposito</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Saque&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tela_saque</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Transferência&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tela_transferencia</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -235,11 +285,12 @@
 <div class="viewcode-block" id="InterfaceBancaria.tela_deposito">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.tela_deposito">[docs]</a>
     <span class="k">def</span> <span class="nf">tela_deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cria a interface para realizar depósito.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cria a interface para permitir que o usuário faça um depósito.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">limpar_tela</span><span class="p">()</span>
 
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Depósito&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Valor&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">entrada_valor_deposito</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">entrada_valor_deposito</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -251,11 +302,12 @@
 <div class="viewcode-block" id="InterfaceBancaria.tela_saque">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.tela_saque">[docs]</a>
     <span class="k">def</span> <span class="nf">tela_saque</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cria a interface para realizar saque.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cria a interface para permitir que o usuário faça um saque.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">limpar_tela</span><span class="p">()</span>
 
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Saque&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Valor&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">entrada_valor_saque</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">entrada_valor_saque</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -267,11 +319,12 @@
 <div class="viewcode-block" id="InterfaceBancaria.tela_transferencia">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.tela_transferencia">[docs]</a>
     <span class="k">def</span> <span class="nf">tela_transferencia</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cria a interface para realizar transferência.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cria a interface para permitir que o usuário faça uma transferência.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">limpar_tela</span><span class="p">()</span>
 
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Transferência&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Conta destino&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">entrada_conta_destino</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">entrada_conta_destino</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -287,7 +340,9 @@
 <div class="viewcode-block" id="InterfaceBancaria.mostrar_extrato">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.mostrar_extrato">[docs]</a>
     <span class="k">def</span> <span class="nf">mostrar_extrato</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mostra o extrato na tela.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Exibe o extrato da conta em uma janela de mensagem.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">extrato</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">banco</span><span class="o">.</span><span class="n">extrato</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numero_conta</span><span class="p">)</span>
         <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Extrato&quot;</span><span class="p">,</span> <span class="n">extrato</span><span class="p">)</span></div>
 
@@ -295,15 +350,14 @@
 <div class="viewcode-block" id="InterfaceBancaria.fazer_login">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.fazer_login">[docs]</a>
     <span class="k">def</span> <span class="nf">fazer_login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Realiza o login do usuário.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Realiza o login do usuário, autenticando com o número da conta e a senha.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">numero_conta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrada_numero_conta</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="n">senha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrada_senha</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">banco</span><span class="o">.</span><span class="n">autenticar</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">,</span> <span class="n">senha</span><span class="p">):</span>
-            <span class="c1"># Armazenar o número da conta para uso posterior</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">numero_conta</span> <span class="o">=</span> <span class="n">numero_conta</span>
-            
-            <span class="c1"># Exibir a tela de operações</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tela_operacoes</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Erro&quot;</span><span class="p">,</span> <span class="s2">&quot;Número da conta ou senha inválidos&quot;</span><span class="p">)</span></div>
@@ -312,8 +366,11 @@
 <div class="viewcode-block" id="InterfaceBancaria.fazer_deposito">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.fazer_deposito">[docs]</a>
     <span class="k">def</span> <span class="nf">fazer_deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Realiza o depósito de um valor na conta do usuário logado.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">valor_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrada_valor_deposito</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-        <span class="n">valor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalizar_valor</span><span class="p">(</span><span class="n">valor_str</span><span class="p">)</span>  <span class="c1"># Chamando como self.normalizar_valor</span>
+        <span class="n">valor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalizar_valor</span><span class="p">(</span><span class="n">valor_str</span><span class="p">)</span>
         
         <span class="k">if</span> <span class="n">valor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Erro&quot;</span><span class="p">,</span> <span class="s2">&quot;Por favor, insira um valor válido.&quot;</span><span class="p">)</span>
@@ -329,8 +386,11 @@
 <div class="viewcode-block" id="InterfaceBancaria.fazer_saque">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.fazer_saque">[docs]</a>
     <span class="k">def</span> <span class="nf">fazer_saque</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Realiza o saque de um valor da conta do usuário logado.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">valor_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrada_valor_saque</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-        <span class="n">valor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalizar_valor</span><span class="p">(</span><span class="n">valor_str</span><span class="p">)</span>  <span class="c1"># Chamando como self.normalizar_valor</span>
+        <span class="n">valor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalizar_valor</span><span class="p">(</span><span class="n">valor_str</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">valor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Erro&quot;</span><span class="p">,</span> <span class="s2">&quot;Por favor, insira um valor válido.&quot;</span><span class="p">)</span>
@@ -348,7 +408,9 @@
 <div class="viewcode-block" id="InterfaceBancaria.fazer_transferencia">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.fazer_transferencia">[docs]</a>
     <span class="k">def</span> <span class="nf">fazer_transferencia</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Realiza uma transferência entre contas.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Realiza a transferência de um valor entre contas bancárias.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">conta_destino</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrada_conta_destino</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="n">valor_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrada_valor_transferencia</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="n">valor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalizar_valor</span><span class="p">(</span><span class="n">valor_str</span><span class="p">)</span>
@@ -357,10 +419,8 @@
             <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Erro&quot;</span><span class="p">,</span> <span class="s2">&quot;Por favor, insira um valor válido.&quot;</span><span class="p">)</span>
             <span class="k">return</span>
 
-        <span class="c1"># Verificar se a transferência foi realizada com sucesso ou se houve erro</span>
         <span class="n">mensagem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">banco</span><span class="o">.</span><span class="n">transferencia</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numero_conta</span><span class="p">,</span> <span class="n">conta_destino</span><span class="p">,</span> <span class="n">valor</span><span class="p">)</span>
 
-        <span class="c1"># Exibe a mensagem de sucesso ou erro</span>
         <span class="k">if</span> <span class="s2">&quot;Erro&quot;</span> <span class="ow">in</span> <span class="n">mensagem</span><span class="p">:</span>
             <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Erro&quot;</span><span class="p">,</span> <span class="n">mensagem</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -371,7 +431,9 @@
 <div class="viewcode-block" id="InterfaceBancaria.limpar_tela">
 <a class="viewcode-back" href="../../gui.html#gui.interface.InterfaceBancaria.limpar_tela">[docs]</a>
     <span class="k">def</span> <span class="nf">limpar_tela</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Limpa a tela atual.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Limpa todos os elementos visuais da tela atual.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">widget</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">winfo_children</span><span class="p">():</span>
             <span class="n">widget</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span></div>
 </div>

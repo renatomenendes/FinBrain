@@ -7,21 +7,51 @@ from tkinter import messagebox
 from app.banco import Banco
 
 class InterfaceBancaria:
+    """
+    Interface gráfica do sistema bancário FinBrain, simulando operações de um banco, como:
+    - Login
+    - Criação de contas
+    - Depósitos
+    - Saques
+    - Transferências
+    - Visualização de extrato
+    """
+    
     def __init__(self, root):
+        """
+        Inicializa a interface gráfica da aplicação e exibe a tela inicial.
+
+        Parâmetros:
+        ----------
+        root : Tk
+            A janela raiz do tkinter.
+        """
         self.root = root
         self.root.title("FinBrain - Sistema Bancário")
 
-        # Definir tamanho de janela para simular um smartphone
+        # Definir tamanho da janela para simular um smartphone
         self.root.geometry("400x600")  # Tamanho típico de um smartphone
         self.root.resizable(False, False)  # Impedir redimensionamento
-        
+
         self.banco = Banco()  # Inicializa o banco de dados
         
         # Exibe a tela inicial
         self.tela_inicial()
 
     def normalizar_valor(self, valor_str):
-        """Normaliza o valor inserido pelo usuário, converte para float e valida."""
+        """
+        Normaliza o valor inserido pelo usuário, removendo símbolos e convertendo para float.
+
+        Parâmetros:
+        ----------
+        valor_str : str
+            O valor inserido pelo usuário.
+
+        Retorna:
+        --------
+        float or None
+            O valor convertido em float ou None se a conversão falhar.
+        """
         valor_str = valor_str.strip().replace("R$", "").replace("r$", "").replace(",", ".")
         
         try:
@@ -31,21 +61,26 @@ class InterfaceBancaria:
             return None
     
     def tela_inicial(self):
-        """Cria a tela inicial com as opções de Login, Criar Conta e Sair."""
+        """
+        Cria a tela inicial com opções de Login, Criar Conta e Sair.
+        """
         self.limpar_tela()
 
         tk.Label(self.root, text="Bem-vindo ao FinBrain", font=("Arial", 16)).pack(pady=20)
-
         tk.Button(self.root, text="Login", width=20, height=2, command=self.tela_login).pack(pady=10)
         tk.Button(self.root, text="Criar Conta", width=20, height=2, command=self.tela_criar_conta).pack(pady=10)
         tk.Button(self.root, text="Sair", width=20, height=2, command=self.sair_aplicacao).pack(pady=10)
 
     def sair_aplicacao(self):
-        """Fecha a aplicação."""
+        """
+        Fecha a aplicação.
+        """
         self.root.quit()
 
     def tela_login(self):
-        """Cria a interface de login."""
+        """
+        Cria a interface de login, solicitando número da conta e senha.
+        """
         self.limpar_tela()
 
         tk.Label(self.root, text="Login", font=("Arial", 16)).pack(pady=20)
@@ -62,7 +97,9 @@ class InterfaceBancaria:
         tk.Button(self.root, text="Voltar", width=20, height=2, command=self.tela_inicial).pack(pady=10)
 
     def tela_criar_conta(self):
-        """Cria a interface para criar uma nova conta."""
+        """
+        Cria a interface para permitir a criação de uma nova conta bancária.
+        """
         self.limpar_tela()
 
         tk.Label(self.root, text="Criar Nova Conta", font=("Arial", 16)).pack(pady=20)
@@ -79,51 +116,64 @@ class InterfaceBancaria:
         tk.Button(self.root, text="Voltar", width=20, height=2, command=self.tela_inicial).pack(pady=10)
 
     def criar_conta(self):
-        """Cria uma nova conta no sistema."""
+        """
+        Cria uma nova conta no sistema e exibe o número da conta.
+        """
         nome = self.entrada_nome.get()
         senha = self.entrada_senha_criacao.get()
         nova_conta = self.banco.criar_conta(nome, senha)
-        
-        # Exibe o número da conta criada em um campo de texto copiável
         self.mostrar_numero_conta(nova_conta.numero_conta)
 
     def mostrar_numero_conta(self, numero_conta):
-        """Exibe o número da conta em um campo de texto copiável."""
+        """
+        Exibe o número da conta recém-criada e permite que o usuário copie para o clipboard.
+
+        Parâmetros:
+        ----------
+        numero_conta : str
+            O número da conta recém-criada.
+        """
         self.limpar_tela()
 
         tk.Label(self.root, text="Conta Criada com Sucesso!", font=("Arial", 16)).pack(pady=20)
         tk.Label(self.root, text="Número da Conta:").pack(pady=5)
 
-        # Campo para exibir o número da conta e permitir cópia
         campo_numero_conta = tk.Entry(self.root, width=30)
         campo_numero_conta.insert(0, numero_conta)
-        campo_numero_conta.config(state="readonly")  # Bloquear edição
+        campo_numero_conta.config(state="readonly")
         campo_numero_conta.pack(pady=5)
 
-        # Botão para copiar o número da conta para o clipboard
         tk.Button(self.root, text="Copiar", command=lambda: self.copiar_para_clipboard(numero_conta)).pack(pady=10)
         tk.Button(self.root, text="Fazer Login", width=20, height=2, command=self.tela_login).pack(pady=10)
 
     def copiar_para_clipboard(self, texto):
-        """Copia o texto para o clipboard."""
+        """
+        Copia o texto fornecido para o clipboard.
+
+        Parâmetros:
+        ----------
+        texto : str
+            O texto a ser copiado para o clipboard.
+        """
         self.root.clipboard_clear()
         self.root.clipboard_append(texto)
         messagebox.showinfo("Copiado", "Número da conta copiado para o clipboard!")
 
     def tela_operacoes(self, numero_conta):
-        """Cria a interface das operações bancárias."""
+        """
+        Cria a interface para exibir as operações disponíveis (depósito, saque, transferência, extrato).
+
+        Parâmetros:
+        ----------
+        numero_conta : str
+            O número da conta do usuário logado.
+        """
         self.limpar_tela()
 
-        # Buscar a conta para exibir o nome do cliente
         conta = self.banco.buscar_conta(numero_conta)
-        if conta:
-            nome_cliente = conta.nome_cliente
-        else:
-            nome_cliente = "Cliente Desconhecido"  # Fallback caso a conta não seja encontrada
+        nome_cliente = conta.nome_cliente if conta else "Cliente Desconhecido"
 
-        # Exibir o nome e o número da conta
         tk.Label(self.root, text=f"{nome_cliente} - Conta {numero_conta}", font=("Arial", 16)).pack(pady=20)
-
         tk.Button(self.root, text="Depósito", width=20, height=2, command=self.tela_deposito).pack(pady=10)
         tk.Button(self.root, text="Saque", width=20, height=2, command=self.tela_saque).pack(pady=10)
         tk.Button(self.root, text="Transferência", width=20, height=2, command=self.tela_transferencia).pack(pady=10)
@@ -131,11 +181,12 @@ class InterfaceBancaria:
         tk.Button(self.root, text="Sair", width=20, height=2, command=self.tela_inicial).pack(pady=10)
 
     def tela_deposito(self):
-        """Cria a interface para realizar depósito."""
+        """
+        Cria a interface para permitir que o usuário faça um depósito.
+        """
         self.limpar_tela()
 
         tk.Label(self.root, text="Depósito", font=("Arial", 16)).pack(pady=20)
-
         tk.Label(self.root, text="Valor").pack(pady=5)
         self.entrada_valor_deposito = tk.Entry(self.root, width=30)
         self.entrada_valor_deposito.pack(pady=5)
@@ -144,11 +195,12 @@ class InterfaceBancaria:
         tk.Button(self.root, text="Voltar", width=20, height=2, command=lambda: self.tela_operacoes(self.numero_conta)).pack(pady=10)
 
     def tela_saque(self):
-        """Cria a interface para realizar saque."""
+        """
+        Cria a interface para permitir que o usuário faça um saque.
+        """
         self.limpar_tela()
 
         tk.Label(self.root, text="Saque", font=("Arial", 16)).pack(pady=20)
-
         tk.Label(self.root, text="Valor").pack(pady=5)
         self.entrada_valor_saque = tk.Entry(self.root, width=30)
         self.entrada_valor_saque.pack(pady=5)
@@ -157,11 +209,12 @@ class InterfaceBancaria:
         tk.Button(self.root, text="Voltar", width=20, height=2, command=lambda: self.tela_operacoes(self.numero_conta)).pack(pady=10)
 
     def tela_transferencia(self):
-        """Cria a interface para realizar transferência."""
+        """
+        Cria a interface para permitir que o usuário faça uma transferência.
+        """
         self.limpar_tela()
 
         tk.Label(self.root, text="Transferência", font=("Arial", 16)).pack(pady=20)
-
         tk.Label(self.root, text="Conta destino").pack(pady=5)
         self.entrada_conta_destino = tk.Entry(self.root, width=30)
         self.entrada_conta_destino.pack(pady=5)
@@ -174,27 +227,31 @@ class InterfaceBancaria:
         tk.Button(self.root, text="Voltar", width=20, height=2, command=lambda: self.tela_operacoes(self.numero_conta)).pack(pady=10)
 
     def mostrar_extrato(self):
-        """Mostra o extrato na tela."""
+        """
+        Exibe o extrato da conta em uma janela de mensagem.
+        """
         extrato = self.banco.extrato(self.numero_conta)
         messagebox.showinfo("Extrato", extrato)
 
     def fazer_login(self):
-        """Realiza o login do usuário."""
+        """
+        Realiza o login do usuário, autenticando com o número da conta e a senha.
+        """
         numero_conta = self.entrada_numero_conta.get()
         senha = self.entrada_senha.get()
         
         if self.banco.autenticar(numero_conta, senha):
-            # Armazenar o número da conta para uso posterior
             self.numero_conta = numero_conta
-            
-            # Exibir a tela de operações
             self.tela_operacoes(numero_conta)
         else:
             messagebox.showerror("Erro", "Número da conta ou senha inválidos")
 
     def fazer_deposito(self):
+        """
+        Realiza o depósito de um valor na conta do usuário logado.
+        """
         valor_str = self.entrada_valor_deposito.get()
-        valor = self.normalizar_valor(valor_str)  # Chamando como self.normalizar_valor
+        valor = self.normalizar_valor(valor_str)
         
         if valor is None:
             messagebox.showerror("Erro", "Por favor, insira um valor válido.")
@@ -207,8 +264,11 @@ class InterfaceBancaria:
             messagebox.showerror("Erro", "Falha no depósito.")
 
     def fazer_saque(self):
+        """
+        Realiza o saque de um valor da conta do usuário logado.
+        """
         valor_str = self.entrada_valor_saque.get()
-        valor = self.normalizar_valor(valor_str)  # Chamando como self.normalizar_valor
+        valor = self.normalizar_valor(valor_str)
 
         if valor is None:
             messagebox.showerror("Erro", "Por favor, insira um valor válido.")
@@ -223,7 +283,9 @@ class InterfaceBancaria:
             messagebox.showerror("Erro", "Saldo insuficiente ou erro ao realizar o saque.")
 
     def fazer_transferencia(self):
-        """Realiza uma transferência entre contas."""
+        """
+        Realiza a transferência de um valor entre contas bancárias.
+        """
         conta_destino = self.entrada_conta_destino.get()
         valor_str = self.entrada_valor_transferencia.get()
         valor = self.normalizar_valor(valor_str)
@@ -232,10 +294,8 @@ class InterfaceBancaria:
             messagebox.showerror("Erro", "Por favor, insira um valor válido.")
             return
 
-        # Verificar se a transferência foi realizada com sucesso ou se houve erro
         mensagem = self.banco.transferencia(self.numero_conta, conta_destino, valor)
 
-        # Exibe a mensagem de sucesso ou erro
         if "Erro" in mensagem:
             messagebox.showerror("Erro", mensagem)
         else:
@@ -243,7 +303,9 @@ class InterfaceBancaria:
             self.tela_operacoes(self.numero_conta)
 
     def limpar_tela(self):
-        """Limpa a tela atual."""
+        """
+        Limpa todos os elementos visuais da tela atual.
+        """
         for widget in self.root.winfo_children():
             widget.destroy()
 

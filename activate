@@ -1,0 +1,10 @@
+#!/bin/bash
+# set -e
+
+# script to initialize FinBrain
+conda activate FinBrain
+python -c 'import gamma.config' || make install-deps
+HERE="$(dirname $(readlink -f $0))"
+
+export PYTHONPATH="$PWD"
+export GAMMA_CONFIG_ROOT="$PWD/config"

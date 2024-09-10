@@ -17,7 +17,7 @@ class Auditoria:
         Inicializa o sistema de auditoria configurando o arquivo de log.
 
         Parâmetros:
-        ------------
+        ---------------
         arquivo_log : str, opcional
             O caminho e o nome do arquivo de log. O padrão é 'auditoria.log'.
         """
@@ -32,7 +32,7 @@ class Auditoria:
         Registra um evento no log com o nível de severidade especificado.
 
         Parâmetros:
-        ------------
+        ---------------
         mensagem : str
             A mensagem a ser registrada no log.
         nivel : str, opcional
@@ -40,7 +40,7 @@ class Auditoria:
             O padrão é "info".
 
         Exceções:
-        ------------
+        ---------------
         Se o nível fornecido não for "info", "warning" ou "error", a mensagem será 
         registrada como "info" por padrão.
         """

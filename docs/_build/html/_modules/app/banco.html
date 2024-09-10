@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>app.banco &mdash; Vibra Pricing 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=6fefd858"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29BA74" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Vibra Pricing
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">FinBrain</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #29BA74" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Vibra Pricing</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../app.html">app</a></li>
+      <li class="breadcrumb-item active">app.banco</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for app.banco</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">app.persistencia</span> <span class="kn">import</span> <span class="n">Persistencia</span>
+<span class="kn">from</span> <span class="nn">app.autenticacao</span> <span class="kn">import</span> <span class="n">Autenticacao</span>
+<span class="kn">from</span> <span class="nn">app.transacoes</span> <span class="kn">import</span> <span class="n">TransacaoBancaria</span>
+
+<div class="viewcode-block" id="ContaBancaria">
+<a class="viewcode-back" href="../../app.html#app.banco.ContaBancaria">[docs]</a>
+<span class="k">class</span> <span class="nc">ContaBancaria</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">,</span> <span class="n">nome_cliente</span><span class="p">,</span> <span class="n">senha_hash</span><span class="p">,</span> <span class="n">saldo_inicial</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Inicializa a conta bancária.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numero_conta</span> <span class="o">=</span> <span class="n">numero_conta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nome_cliente</span> <span class="o">=</span> <span class="n">nome_cliente</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">senha_hash</span> <span class="o">=</span> <span class="n">senha_hash</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">=</span> <span class="n">saldo_inicial</span>
+
+<div class="viewcode-block" id="ContaBancaria.depositar">
+<a class="viewcode-back" href="../../app.html#app.banco.ContaBancaria.depositar">[docs]</a>
+    <span class="k">def</span> <span class="nf">depositar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Deposita um valor na conta.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">+=</span> <span class="n">valor</span></div>
+
+
+<div class="viewcode-block" id="ContaBancaria.sacar">
+<a class="viewcode-back" href="../../app.html#app.banco.ContaBancaria.sacar">[docs]</a>
+    <span class="k">def</span> <span class="nf">sacar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valor</span><span class="p">,</span> <span class="n">taxa</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Saca um valor da conta, aplicando taxa se houver saldo suficiente.&quot;&quot;&quot;</span>
+        <span class="n">valor_total</span> <span class="o">=</span> <span class="n">valor</span> <span class="o">+</span> <span class="n">taxa</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">&gt;=</span> <span class="n">valor_total</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">-=</span> <span class="n">valor_total</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="ContaBancaria.saldo_atual">
+<a class="viewcode-back" href="../../app.html#app.banco.ContaBancaria.saldo_atual">[docs]</a>
+    <span class="k">def</span> <span class="nf">saldo_atual</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retorna o saldo atual da conta.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span></div>
+</div>
+
+
+<div class="viewcode-block" id="Banco">
+<a class="viewcode-back" href="../../app.html#app.banco.Banco">[docs]</a>
+<span class="k">class</span> <span class="nc">Banco</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Inicializa o banco com persistência de dados.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span> <span class="o">=</span> <span class="n">Persistencia</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transacao_bancaria</span> <span class="o">=</span> <span class="n">TransacaoBancaria</span><span class="p">()</span>  <span class="c1"># Instancia a classe de transações</span>
+
+<div class="viewcode-block" id="Banco.transferencia">
+<a class="viewcode-back" href="../../app.html#app.banco.Banco.transferencia">[docs]</a>
+    <span class="k">def</span> <span class="nf">transferencia</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta_origem</span><span class="p">,</span> <span class="n">numero_conta_destino</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delegar a transferência para a lógica de transações bancárias.&quot;&quot;&quot;</span>
+        <span class="c1"># Chama o método registrar_transferencia da classe TransacaoBancaria</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transacao_bancaria</span><span class="o">.</span><span class="n">registrar_transferencia</span><span class="p">(</span><span class="n">numero_conta_origem</span><span class="p">,</span> <span class="n">numero_conta_destino</span><span class="p">,</span> <span class="n">valor</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Banco.criar_conta">
+<a class="viewcode-back" href="../../app.html#app.banco.Banco.criar_conta">[docs]</a>
+    <span class="k">def</span> <span class="nf">criar_conta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nome_cliente</span><span class="p">,</span> <span class="n">senha</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cria uma nova conta bancária com um número de conta único.&quot;&quot;&quot;</span>
+        <span class="n">numero_conta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gerar_numero_conta</span><span class="p">()</span>
+        <span class="n">senha_hash</span> <span class="o">=</span> <span class="n">Autenticacao</span><span class="o">.</span><span class="n">hash_senha</span><span class="p">(</span><span class="n">senha</span><span class="p">)</span>  <span class="c1"># Gera o hash da senha</span>
+        <span class="n">nova_conta</span> <span class="o">=</span> <span class="n">ContaBancaria</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">,</span> <span class="n">nome_cliente</span><span class="p">,</span> <span class="n">senha_hash</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">salvar_conta</span><span class="p">(</span><span class="n">nova_conta</span><span class="p">)</span>  <span class="c1"># Salva a conta no banco de dados</span>
+        <span class="k">return</span> <span class="n">nova_conta</span></div>
+
+
+<div class="viewcode-block" id="Banco.autenticar">
+<a class="viewcode-back" href="../../app.html#app.banco.Banco.autenticar">[docs]</a>
+    <span class="k">def</span> <span class="nf">autenticar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">,</span> <span class="n">senha</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Autentica o usuário verificando a senha hash.&quot;&quot;&quot;</span>
+        <span class="n">conta_dados</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">carregar_conta</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">conta_dados</span><span class="p">:</span>
+            <span class="n">numero_conta</span><span class="p">,</span> <span class="n">nome_cliente</span><span class="p">,</span> <span class="n">senha_hash</span><span class="p">,</span> <span class="n">saldo</span> <span class="o">=</span> <span class="n">conta_dados</span>  <span class="c1"># Obtém o hash da senha</span>
+            <span class="c1"># Verifica se a senha fornecida corresponde ao hash armazenado</span>
+            <span class="k">return</span> <span class="n">Autenticacao</span><span class="o">.</span><span class="n">verificar_senha</span><span class="p">(</span><span class="n">senha</span><span class="p">,</span> <span class="n">senha_hash</span><span class="p">)</span>  <span class="c1"># Passa a senha e o hash</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="Banco.gerar_numero_conta">
+<a class="viewcode-back" href="../../app.html#app.banco.Banco.gerar_numero_conta">[docs]</a>
+    <span class="k">def</span> <span class="nf">gerar_numero_conta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gera um número de conta único.&quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">random</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">999999</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Banco.buscar_conta">
+<a class="viewcode-back" href="../../app.html#app.banco.Banco.buscar_conta">[docs]</a>
+    <span class="k">def</span> <span class="nf">buscar_conta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Busca uma conta pelo número.&quot;&quot;&quot;</span>
+        <span class="n">dados_conta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">carregar_conta</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dados_conta</span><span class="p">:</span>
+            <span class="n">numero_conta</span><span class="p">,</span> <span class="n">nome_cliente</span><span class="p">,</span> <span class="n">senha_hash</span><span class="p">,</span> <span class="n">saldo</span> <span class="o">=</span> <span class="n">dados_conta</span>
+            <span class="k">return</span> <span class="n">ContaBancaria</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">,</span> <span class="n">nome_cliente</span><span class="p">,</span> <span class="n">senha_hash</span><span class="p">,</span> <span class="n">saldo</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="Banco.deposito">
+<a class="viewcode-back" href="../../app.html#app.banco.Banco.deposito">[docs]</a>
+    <span class="k">def</span> <span class="nf">deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Deposita um valor na conta.&quot;&quot;&quot;</span>
+        <span class="n">conta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buscar_conta</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">conta</span><span class="p">:</span>
+            <span class="n">conta</span><span class="o">.</span><span class="n">depositar</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">salvar_conta</span><span class="p">(</span><span class="n">conta</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">registrar_transacao</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">,</span> <span class="s1">&#39;deposito&#39;</span><span class="p">,</span> <span class="n">valor</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="Banco.saque">
+<a class="viewcode-back" href="../../app.html#app.banco.Banco.saque">[docs]</a>
+    <span class="k">def</span> <span class="nf">saque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">,</span> <span class="n">valor</span><span class="p">,</span> <span class="n">taxa</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Saca um valor da conta.&quot;&quot;&quot;</span>
+        <span class="n">conta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buscar_conta</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">conta</span> <span class="ow">and</span> <span class="n">conta</span><span class="o">.</span><span class="n">sacar</span><span class="p">(</span><span class="n">valor</span><span class="p">,</span> <span class="n">taxa</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">salvar_conta</span><span class="p">(</span><span class="n">conta</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">registrar_transacao</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">,</span> <span class="s1">&#39;saque&#39;</span><span class="p">,</span> <span class="n">valor</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>  <span class="c1"># Retorna True para indicar que o saque foi bem-sucedido</span>
+        <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># Retorna False se o saque falhar</span></div>
+
+
+
+    <span class="c1"># def saque(self, numero_conta, valor, taxa=0):</span>
+    <span class="c1">#     &quot;&quot;&quot;Saca um valor da conta.&quot;&quot;&quot;</span>
+    <span class="c1">#     conta = self.buscar_conta(numero_conta)</span>
+    <span class="c1">#     if conta and conta.sacar(valor, taxa):</span>
+    <span class="c1">#         self.persistencia.salvar_conta(conta)</span>
+    <span class="c1">#         self.persistencia.registrar_transacao(numero_conta, &#39;saque&#39;, valor)</span>
+    <span class="c1">#         return True</span>
+    <span class="c1">#     return False</span>
+
+    <span class="c1"># def transferencia(self, numero_conta_origem, numero_conta_destino, valor, taxa=0):</span>
+    <span class="c1">#     &quot;&quot;&quot;Transfere um valor entre contas.&quot;&quot;&quot;</span>
+    <span class="c1">#     conta_origem = self.buscar_conta(numero_conta_origem)</span>
+    <span class="c1">#     conta_destino = self.buscar_conta(numero_conta_destino)</span>
+    <span class="c1">#     if conta_origem and conta_destino and conta_origem.sacar(valor, taxa):</span>
+    <span class="c1">#         conta_destino.depositar(valor)</span>
+    <span class="c1">#         self.persistencia.salvar_conta(conta_origem)</span>
+    <span class="c1">#         self.persistencia.salvar_conta(conta_destino)</span>
+    <span class="c1">#         self.persistencia.registrar_transacao(numero_conta_origem, &#39;transferencia_envio&#39;, valor)</span>
+    <span class="c1">#         self.persistencia.registrar_transacao(numero_conta_destino, &#39;transferencia_recebido&#39;, valor)</span>
+    <span class="c1">#         return True</span>
+    <span class="c1">#     return False</span>
+
+<div class="viewcode-block" id="Banco.extrato">
+<a class="viewcode-back" href="../../app.html#app.banco.Banco.extrato">[docs]</a>
+    <span class="k">def</span> <span class="nf">extrato</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero_conta</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gera o extrato de transações de uma conta.&quot;&quot;&quot;</span>
+        <span class="n">transacoes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistencia</span><span class="o">.</span><span class="n">carregar_transacoes</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">)</span>
+        <span class="n">conta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buscar_conta</span><span class="p">(</span><span class="n">numero_conta</span><span class="p">)</span>  <span class="c1"># Carrega a conta para obter o saldo</span>
+        <span class="n">saldo</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">conta</span><span class="o">.</span><span class="n">saldo_atual</span><span class="p">())</span>  <span class="c1"># Converte o saldo para float</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">transacoes</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Não foram realizadas movimentações.&quot;</span>
+        
+        <span class="c1"># Primeira linha do extrato com o saldo atual</span>
+        <span class="n">extrato</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Saldo atual: R$</span><span class="si">{</span><span class="n">saldo</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+        
+        <span class="c1"># Iterar sobre as transações e formatar corretamente</span>
+        <span class="k">for</span> <span class="n">transacao</span> <span class="ow">in</span> <span class="n">transacoes</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">transacao</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># Data da transação (posição 4)</span>
+            <span class="n">tipo</span> <span class="o">=</span> <span class="n">transacao</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># Tipo de transação (posição 2)</span>
+            <span class="n">valor</span> <span class="o">=</span> <span class="n">transacao</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># Valor da transação (posição 3)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">valor</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>  <span class="c1"># Converte o valor para float</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Erro ao formatar a transação: valor &#39;</span><span class="si">{</span><span class="n">valor</span><span class="si">}</span><span class="s2">&#39; inválido&quot;</span>
+
+            <span class="c1"># Formatar a transação no extrato</span>
+            <span class="n">extrato</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">tipo</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2">: R$</span><span class="si">{</span><span class="n">valor</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extrato</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 - Renato Menendes. Todos os direitos reservados sob a Licença MIT..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

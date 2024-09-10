@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+# Jupyter lab kernels CWD are set to the notebook location. This will make them
+# behave as if loaded from the project home folder
+export PYTHONPATH="$PWD"
+export GAMMA_CONFIG_ROOT="$PWD/config"
+
+# Inicia o Jupyter Lab com um limite de taxa de dados iopub aumentado
+jupyter lab --ip 0.0.0.0 --ServerApp.iopub_data_rate_limit=1.0e10 "$@"

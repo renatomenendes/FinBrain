@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>app package &mdash; Vibra Pricing 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=6fefd858"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="gui package" href="gui.html" />
+    <link rel="prev" title="FinBrain module" href="FinBrain.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29BA74" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Vibra Pricing
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">FinBrain</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FinBrain.html">FinBrain module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">app package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-app.auditoria">app.auditoria module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.auditoria.Auditoria"><code class="docutils literal notranslate"><span class="pre">Auditoria</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-app.autenticacao">app.autenticacao module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.autenticacao.Autenticacao"><code class="docutils literal notranslate"><span class="pre">Autenticacao</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-app.banco">app.banco module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.banco.Banco"><code class="docutils literal notranslate"><span class="pre">Banco</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.banco.ContaBancaria"><code class="docutils literal notranslate"><span class="pre">ContaBancaria</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-app.persistencia">app.persistencia module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.persistencia.Persistencia"><code class="docutils literal notranslate"><span class="pre">Persistencia</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-app.transacoes">app.transacoes module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.transacoes.TransacaoBancaria"><code class="docutils literal notranslate"><span class="pre">TransacaoBancaria</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-app">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.conectar_banco_dados"><code class="docutils literal notranslate"><span class="pre">conectar_banco_dados()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">gui package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #29BA74" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Vibra Pricing</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">FinBrain</a></li>
+      <li class="breadcrumb-item active">app package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/app.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="app-package">
+<h1>app package<a class="headerlink" href="#app-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-app.auditoria">
+<span id="app-auditoria-module"></span><h2>app.auditoria module<a class="headerlink" href="#module-app.auditoria" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.auditoria.Auditoria">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.auditoria.</span></span><span class="sig-name descname"><span class="pre">Auditoria</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arquivo_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auditoria.log'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/auditoria.html#Auditoria"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.auditoria.Auditoria" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.auditoria.Auditoria.registrar_evento">
+<span class="sig-name descname"><span class="pre">registrar_evento</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mensagem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nivel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'info'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/auditoria.html#Auditoria.registrar_evento"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.auditoria.Auditoria.registrar_evento" title="Link to this definition"></a></dt>
+<dd><p>Registra um evento no log.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.autenticacao">
+<span id="app-autenticacao-module"></span><h2>app.autenticacao module<a class="headerlink" href="#module-app.autenticacao" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.autenticacao.Autenticacao">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.autenticacao.</span></span><span class="sig-name descname"><span class="pre">Autenticacao</span></span><a class="reference internal" href="_modules/app/autenticacao.html#Autenticacao"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.autenticacao.Autenticacao" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.autenticacao.Autenticacao.hash_senha">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hash_senha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">senha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/autenticacao.html#Autenticacao.hash_senha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.autenticacao.Autenticacao.hash_senha" title="Link to this definition"></a></dt>
+<dd><p>Gera o hash da senha.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.autenticacao.Autenticacao.verificar_senha">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">verificar_senha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">senha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">senha_hash</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/autenticacao.html#Autenticacao.verificar_senha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.autenticacao.Autenticacao.verificar_senha" title="Link to this definition"></a></dt>
+<dd><p>Verifica se o hash da senha fornecida corresponde ao hash armazenado.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.banco">
+<span id="app-banco-module"></span><h2>app.banco module<a class="headerlink" href="#module-app.banco" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.banco.Banco">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.banco.</span></span><span class="sig-name descname"><span class="pre">Banco</span></span><a class="reference internal" href="_modules/app/banco.html#Banco"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.banco.Banco.autenticar">
+<span class="sig-name descname"><span class="pre">autenticar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">senha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.autenticar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.autenticar" title="Link to this definition"></a></dt>
+<dd><p>Autentica o usuário verificando a senha hash.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.banco.Banco.buscar_conta">
+<span class="sig-name descname"><span class="pre">buscar_conta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.buscar_conta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.buscar_conta" title="Link to this definition"></a></dt>
+<dd><p>Busca uma conta pelo número.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.banco.Banco.criar_conta">
+<span class="sig-name descname"><span class="pre">criar_conta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nome_cliente</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">senha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.criar_conta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.criar_conta" title="Link to this definition"></a></dt>
+<dd><p>Cria uma nova conta bancária com um número de conta único.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.banco.Banco.deposito">
+<span class="sig-name descname"><span class="pre">deposito</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.deposito"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.deposito" title="Link to this definition"></a></dt>
+<dd><p>Deposita um valor na conta.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.banco.Banco.extrato">
+<span class="sig-name descname"><span class="pre">extrato</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.extrato"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.extrato" title="Link to this definition"></a></dt>
+<dd><p>Gera o extrato de transações de uma conta.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.banco.Banco.gerar_numero_conta">
+<span class="sig-name descname"><span class="pre">gerar_numero_conta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.gerar_numero_conta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.gerar_numero_conta" title="Link to this definition"></a></dt>
+<dd><p>Gera um número de conta único.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.banco.Banco.saque">
+<span class="sig-name descname"><span class="pre">saque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.saque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.saque" title="Link to this definition"></a></dt>
+<dd><p>Saca um valor da conta.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.banco.Banco.transferencia">
+<span class="sig-name descname"><span class="pre">transferencia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta_origem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numero_conta_destino</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#Banco.transferencia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.Banco.transferencia" title="Link to this definition"></a></dt>
+<dd><p>Delegar a transferência para a lógica de transações bancárias.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.banco.ContaBancaria">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.banco.</span></span><span class="sig-name descname"><span class="pre">ContaBancaria</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nome_cliente</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">senha_hash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saldo_inicial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#ContaBancaria"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.ContaBancaria" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.banco.ContaBancaria.depositar">
+<span class="sig-name descname"><span class="pre">depositar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#ContaBancaria.depositar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.ContaBancaria.depositar" title="Link to this definition"></a></dt>
+<dd><p>Deposita um valor na conta.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.banco.ContaBancaria.sacar">
+<span class="sig-name descname"><span class="pre">sacar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#ContaBancaria.sacar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.ContaBancaria.sacar" title="Link to this definition"></a></dt>
+<dd><p>Saca um valor da conta, aplicando taxa se houver saldo suficiente.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.banco.ContaBancaria.saldo_atual">
+<span class="sig-name descname"><span class="pre">saldo_atual</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/banco.html#ContaBancaria.saldo_atual"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.banco.ContaBancaria.saldo_atual" title="Link to this definition"></a></dt>
+<dd><p>Retorna o saldo atual da conta.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.persistencia">
+<span id="app-persistencia-module"></span><h2>app.persistencia module<a class="headerlink" href="#module-app.persistencia" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.persistencia.Persistencia">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.persistencia.</span></span><span class="sig-name descname"><span class="pre">Persistencia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">banco_dados</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'banco.db'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/persistencia.html#Persistencia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.persistencia.Persistencia" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.persistencia.Persistencia.carregar_conta">
+<span class="sig-name descname"><span class="pre">carregar_conta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/persistencia.html#Persistencia.carregar_conta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.persistencia.Persistencia.carregar_conta" title="Link to this definition"></a></dt>
+<dd><p>Carrega a conta a partir do banco de dados usando o número da conta.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.persistencia.Persistencia.carregar_transacoes">
+<span class="sig-name descname"><span class="pre">carregar_transacoes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/persistencia.html#Persistencia.carregar_transacoes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.persistencia.Persistencia.carregar_transacoes" title="Link to this definition"></a></dt>
+<dd><p>Carrega todas as transações de uma conta pelo número da conta.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.persistencia.Persistencia.criar_tabelas">
+<span class="sig-name descname"><span class="pre">criar_tabelas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/persistencia.html#Persistencia.criar_tabelas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.persistencia.Persistencia.criar_tabelas" title="Link to this definition"></a></dt>
+<dd><p>Cria as tabelas de contas e transações no banco de dados, caso não existam.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.persistencia.Persistencia.fechar_conexao">
+<span class="sig-name descname"><span class="pre">fechar_conexao</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/persistencia.html#Persistencia.fechar_conexao"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.persistencia.Persistencia.fechar_conexao" title="Link to this definition"></a></dt>
+<dd><p>Fecha a conexão com o banco de dados.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.persistencia.Persistencia.registrar_transacao">
+<span class="sig-name descname"><span class="pre">registrar_transacao</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/persistencia.html#Persistencia.registrar_transacao"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.persistencia.Persistencia.registrar_transacao" title="Link to this definition"></a></dt>
+<dd><p>Insere uma nova transação no banco de dados.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.persistencia.Persistencia.salvar_conta">
+<span class="sig-name descname"><span class="pre">salvar_conta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/persistencia.html#Persistencia.salvar_conta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.persistencia.Persistencia.salvar_conta" title="Link to this definition"></a></dt>
+<dd><p>Insere ou atualiza uma conta bancária no banco de dados.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.transacoes">
+<span id="app-transacoes-module"></span><h2>app.transacoes module<a class="headerlink" href="#module-app.transacoes" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.transacoes.</span></span><span class="sig-name descname"><span class="pre">TransacaoBancaria</span></span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria.calcular_taxa_saque">
+<span class="sig-name descname"><span class="pre">calcular_taxa_saque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria.calcular_taxa_saque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria.calcular_taxa_saque" title="Link to this definition"></a></dt>
+<dd><p>Calcula taxa de 1% para saques</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria.calcular_taxa_transferencia">
+<span class="sig-name descname"><span class="pre">calcular_taxa_transferencia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria.calcular_taxa_transferencia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria.calcular_taxa_transferencia" title="Link to this definition"></a></dt>
+<dd><p>Calcula taxa de 1.5% para transferências</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria.data_hoje">
+<span class="sig-name descname"><span class="pre">data_hoje</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria.data_hoje"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria.data_hoje" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria.registrar_saque">
+<span class="sig-name descname"><span class="pre">registrar_saque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria.registrar_saque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria.registrar_saque" title="Link to this definition"></a></dt>
+<dd><p>Registra um saque com verificação de limites e saldo.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria.registrar_transferencia">
+<span class="sig-name descname"><span class="pre">registrar_transferencia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta_origem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numero_conta_destino</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria.registrar_transferencia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria.registrar_transferencia" title="Link to this definition"></a></dt>
+<dd><p>Registra uma transferência com verificação de limites e saldo.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.transacoes.TransacaoBancaria.verificar_limite_saques_diarios">
+<span class="sig-name descname"><span class="pre">verificar_limite_saques_diarios</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero_conta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/transacoes.html#TransacaoBancaria.verificar_limite_saques_diarios"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.transacoes.TransacaoBancaria.verificar_limite_saques_diarios" title="Link to this definition"></a></dt>
+<dd><p>Verifica se o limite de 3 saques/transferências diários foi atingido.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-app" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.conectar_banco_dados">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">conectar_banco_dados</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">caminho_banco</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'banco.db'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#conectar_banco_dados"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.conectar_banco_dados" title="Link to this definition"></a></dt>
+<dd><p>Inicializa a conexão com o banco de dados SQLite</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="FinBrain.html" class="btn btn-neutral float-left" title="FinBrain module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gui.html" class="btn btn-neutral float-right" title="gui package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 - Renato Menendes. Todos os direitos reservados sob a Licença MIT..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

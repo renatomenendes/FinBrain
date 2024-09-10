@@ -19,8 +19,8 @@ sys.path.insert(0, os.path.abspath(".."))
 # -- Project information -----------------------------------------------------
 
 project = "Vibra Pricing"
-copyright = "2024 - Todos os direitos reservados à Vibra."
-author = "Vibra Energia"
+copyright = "2024 - Renato Menendes. Todos os direitos reservados sob a Licença MIT."
+author = "Renato Menendes"
 
 # The full version, including alpha/beta/rc tags
 release = "2024"

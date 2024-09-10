@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinBrain - Sistema Bancário Inteligente com um agente de Reinforcement learning &mdash; Vibra Pricing 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=6fefd858"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="FinBrain" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29BA74" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Vibra Pricing
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">FinBrain</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #29BA74" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Vibra Pricing</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">FinBrain - Sistema Bancário Inteligente com um agente de Reinforcement learning</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="finbrain-sistema-bancario-inteligente-com-um-agente-de-reinforcement-learning">
+<h1>FinBrain - Sistema Bancário Inteligente com um agente de Reinforcement learning<a class="headerlink" href="#finbrain-sistema-bancario-inteligente-com-um-agente-de-reinforcement-learning" title="Link to this heading"></a></h1>
+<p>© 2024 Renato Menendes. Todos os direitos reservados sob a Licença MIT.</p>
+<section id="descricao">
+<h2>Descrição<a class="headerlink" href="#descricao" title="Link to this heading"></a></h2>
+<p>FinBrain é um sistema bancário inteligente que utiliza <strong>Tkinter</strong> para interface gráfica e um <strong>Agente de Aprendizado por Reforço (RL)</strong> para gerar relatórios inteligentes sobre o comportamento financeiro dos usuários.</p>
+</section>
+<section id="funcionalidades">
+<h2>Funcionalidades<a class="headerlink" href="#funcionalidades" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Criação de conta</strong>: Com nome, número de conta e senha com hash para segurança.</p></li>
+<li><p><strong>Login seguro</strong>: Autenticação por senha utilizando hashing com <code class="docutils literal notranslate"><span class="pre">sha256</span></code>.</p></li>
+<li><p><strong>Operações bancárias</strong>:</p>
+<ul>
+<li><p>Depósito</p></li>
+<li><p>Saque com aplicação de taxa dinâmica</p></li>
+<li><p>Transferência entre contas com taxa</p></li>
+<li><p>Visualização de extrato detalhado</p></li>
+</ul>
+</li>
+<li><p><strong>Agente de Aprendizado por Reforço</strong>:</p>
+<ul>
+<li><p>Geração de relatórios inteligentes baseados no histórico de transações.</p></li>
+</ul>
+</li>
+<li><p><strong>Persistência de dados</strong>: Contas e transações são armazenadas em um banco de dados SQLite.</p></li>
+<li><p><strong>Interface gráfica aprimorada</strong>: Utilizando <code class="docutils literal notranslate"><span class="pre">Tkinter</span></code> e <code class="docutils literal notranslate"><span class="pre">ttk</span></code> para widgets estilizados.</p></li>
+</ul>
+<section id="environment">
+<h3>Environment<a class="headerlink" href="#environment" title="Link to this heading"></a></h3>
+<p>Essa aplicação foi desenvolvida com <strong>Python 3.9</strong>.</p>
+<section id="criando-o-ambiente-virtual">
+<h4>Criando o ambiente virtual<a class="headerlink" href="#criando-o-ambiente-virtual" title="Link to this heading"></a></h4>
+<p>Crie um novo ambiente para rodar o projeto:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>FinBrain<span class="w"> </span>-y<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
+</pre></div>
+</div>
+<p>Para ativar o ambiente, use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>FinBrain
+</pre></div>
+</div>
+</section>
+</section>
+<section id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h3>
+<p>Para instalar as dependências, execute o seguinte comando dentro do ambiente virtual:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;.\requirements\requirements.txt&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="estrutura-do-projeto">
+<h2>Estrutura do Projeto<a class="headerlink" href="#estrutura-do-projeto" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>FinBrain/
+│
+├── app/                      # Lógica das operações bancárias
+│   ├── banco.py              # Operações bancárias (saques, depósitos, transferências)
+│   ├── autenticacao.py       # Autenticação e segurança (hashing de senhas)
+│   ├── transacoes.py         # Cálculo de taxas de saque e transferência
+│   └── persistencia.py       # Persistência com SQLite
+│
+├── config/                   # Diretório de configuração
+│   └── config.yaml           # Arquivo de configuração YAML
+│
+├── data/                     # Diretório de dados locais (para testes e desenvolvimento)
+│   └── sample_data.db        # Banco de dados de amostra
+│
+├── gui/                      # Interface gráfica com Tkinter
+│   └── interface.py          # Interface gráfica
+│
+├── rl/                       # Agente de Reforço para relatórios inteligentes
+│   └── agente_rl.py          # Implementação do agente RL
+│
+├── tests/                    # Testes automatizados
+│   ├── test_banco.py         # Testes unitários de funcionalidades bancárias
+│   └── test_gui.py           # Testes automatizados para interface gráfica
+│
+├── requirements/             # Diretório de dependências
+│   └── requirements.txt      # Lista de dependências do projeto
+│
+├── README.md                 # Documentação do projeto
+├── FinBrain.py                   # Arquivo principal para rodar a aplicação
+├── LICENSE                   # Licença MIT
+└── .gitignore                # Arquivo para ignorar arquivos desnecessários no versionamento
+</pre></div>
+</div>
+</section>
+<section id="rodando-tasks">
+<h2>Rodando Tasks<a class="headerlink" href="#rodando-tasks" title="Link to this heading"></a></h2>
+<section id="rodando-a-aplicacao">
+<h3>Rodando a aplicação<a class="headerlink" href="#rodando-a-aplicacao" title="Link to this heading"></a></h3>
+<p>Para iniciar a aplicação, execute:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>main.py
+</pre></div>
+</div>
+</section>
+</section>
+<section id="exemplo-de-uso">
+<h2>Exemplo de Uso<a class="headerlink" href="#exemplo-de-uso" title="Link to this heading"></a></h2>
+<p>Após ativar o ambiente e rodar a aplicação (<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">main.py</span></code>), siga os passos abaixo para realizar um depósito:</p>
+<ol class="arabic simple">
+<li><p>Abra o aplicativo.</p></li>
+<li><p>Faça login com uma conta existente ou crie uma nova conta.</p></li>
+<li><p>Selecione “Depósito” no menu principal.</p></li>
+<li><p>Insira o valor e confirme.</p></li>
+</ol>
+<section id="rodando-teste">
+<h3>Rodando teste<a class="headerlink" href="#rodando-teste" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>discover<span class="w"> </span>tests
+</pre></div>
+</div>
+</section>
+<section id="rodando-simulacao">
+<h3>Rodando Simulação<a class="headerlink" href="#rodando-simulacao" title="Link to this heading"></a></h3>
+<p>Para ver uma simulação detalhada da execução do projeto, confira <a class="reference external" href="./simulation.md">simulation</a>.</p>
+</section>
+</section>
+<section id="atualizando-dependencias">
+<h2>Atualizando dependências<a class="headerlink" href="#atualizando-dependencias" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Adicionar a nova dependência para o arquivo <code class="docutils literal notranslate"><span class="pre">.in</span></code> correto na pasta <code class="docutils literal notranslate"><span class="pre">requirements</span></code></p></li>
+<li><p>Rodar:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="nb">compile</span><span class="o">-</span><span class="n">deps</span><span class="o">-</span><span class="n">clean</span>
+<span class="n">make</span> <span class="nb">compile</span><span class="o">-</span><span class="n">deps</span>
+<span class="n">make</span> <span class="n">install</span><span class="o">-</span><span class="n">deps</span>
+</pre></div>
+</div>
+</section>
+<section id="construindo-a-documentacao">
+<h2>Construindo a documentação<a class="headerlink" href="#construindo-a-documentacao" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Tenha certeza que as dependências estão atualizadas (se você não tem certeza, rode: <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install-deps</span></code>)</p></li>
+<li><p>Então, rode:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">docs</span>
+<span class="n">sphinx</span><span class="o">-</span><span class="n">apidoc</span> <span class="o">--</span><span class="n">force</span> <span class="o">-</span><span class="n">o</span> <span class="o">.</span> <span class="o">..</span>
+<span class="n">make</span> <span class="n">clean</span> <span class="n">html</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Os resultados estaram disponíveis em <code class="docutils literal notranslate"><span class="pre">docs/_build</span></code>, você pode abrir o arquivo <code class="docutils literal notranslate"><span class="pre">index.html</span></code> no browser e ver o resultado</p></li>
+</ul>
+</section>
+<section id="licenca">
+<h2>Licença<a class="headerlink" href="#licenca" title="Link to this heading"></a></h2>
+<p>Este projeto é licenciado sob a Licença MIT. Isso significa que você é livre para usar, modificar e distribuir este software, desde que mantenha o aviso de copyright original e a permissão da licença. Veja o arquivo <a class="reference external" href="./LICENSE">LICENSE</a> para mais detalhes.</p>
+<hr class="docutils" />
+<p>© 2024 Renato Menendes. Todos os direitos reservados sob a Licença MIT.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">FinBrain</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="FinBrain.html">FinBrain module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html">app package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app.html#module-app.auditoria">app.auditoria module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app.html#module-app.autenticacao">app.autenticacao module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app.html#module-app.banco">app.banco module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app.html#module-app.persistencia">app.persistencia module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app.html#module-app.transacoes">app.transacoes module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app.html#module-app">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">gui package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gui.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gui.html#module-gui.interface">gui.interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gui.html#module-gui">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-right" title="FinBrain" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 - Renato Menendes. Todos os direitos reservados sob a Licença MIT..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

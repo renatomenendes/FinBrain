@@ -102,8 +102,30 @@ python -m unittest discover tests
 ```
 
 ### Rodando Simulação
-Para ver uma simulação detalhada da execução do projeto, confira [simulation](./simulation.md) .
+Para ver uma simulação detalhada da execução do projeto, confira [simulation](./simulation.md).
 
+
+## Atualizando dependências
+- Adicionar a nova dependência para o arquivo `.in` correto na pasta `requirements`
+- Rodar:
+
+```
+make compile-deps-clean
+make compile-deps
+make install-deps
+```
+
+## Construindo a documentação
+- Tenha certeza que as dependências estão atualizadas (se você não tem certeza, rode: `make install-deps`)
+
+- Então, rode:
+
+```
+cd docs
+sphinx-apidoc --force -o . ..
+make clean html
+```
+- Os resultados estaram disponíveis em `docs/_build`, você pode abrir o arquivo `index.html` no browser e ver o resultado
 
 ## Licença
 
